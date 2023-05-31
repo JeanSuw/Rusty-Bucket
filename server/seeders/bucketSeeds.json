@@ -1,0 +1,73 @@
+[
+    {
+      "title": "Travel Bucket List",
+      "description": "Explore different countries and cultures",
+      "status": "In Progress",
+      "dueDate": "2023-12-31",
+      "priority": 1
+    },
+    {
+      "title": "Adventure Sports",
+      "description": "Try skydiving, bungee jumping, and scuba diving",
+      "status": "Not Started",
+      "dueDate": "2024-06-30",
+      "priority": 2
+    },
+    {
+      "title": "Learn a New Language",
+      "description": "Become fluent in Spanish",
+      "status": "In Progress",
+      "dueDate": "2023-12-31",
+      "priority": 3
+    },
+    {
+      "title": "Read 50 Books",
+      "description": "Diverse genres and authors",
+      "status": "Completed",
+      "dueDate": "2024-03-31",
+      "priority": 4
+    },
+    {
+      "title": "Start a Business",
+      "description": "Launch a successful startup",
+      "status": "Not Started",
+      "dueDate": "2023-10-31",
+      "priority": 5
+    },
+    {
+      "title": "Volunteer Abroad",
+      "description": "Make a positive impact in underprivileged communities",
+      "status": "In Progress",
+      "dueDate": "2024-01-15",
+      "priority": 6
+    },
+    {
+      "title": "Learn to Play an Instrument",
+      "description": "Master the guitar",
+      "status": "In Progress",
+      "dueDate": "2023-09-30",
+      "priority": 7
+    },
+    {
+      "title": "Run a Marathon",
+      "description": "Train and complete a full marathon",
+      "status": "Not Started",
+      "dueDate": "2024-05-01",
+      "priority": 8
+    },
+    {
+      "title": "Write a Book",
+      "description": "Publish a best-selling novel",
+      "status": "Not Started",
+      "dueDate": "2024-08-31",
+      "priority": 9
+    },
+    {
+      "title": "Learn to Cook",
+      "description": "Become skilled in various cuisines",
+      "status": "In Progress",
+      "dueDate": "2023-11-30",
+      "priority": 10
+    }
+  ]
+  
