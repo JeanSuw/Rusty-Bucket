@@ -91,7 +91,7 @@ const resolvers = {
       if (!context.user) {
         throw new Error('Authentication required');
       }
-      // Check if the user is logged in
+      // Check if the user is logged in 
       const userId = context.user._id;
 
       // Find the user by their ID and check if the bucket with the provided ID belongs to the user
