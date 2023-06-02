@@ -102,10 +102,10 @@ const resolvers = {
         throw new Error('Unauthorized');
       }
 
-    
+       // Delete the bucket
       const deletedBucket = await Bucket.findByIdAndDelete(id);
 
-      
+       // Check if the deleted bucket exists
       if (!deletedBucket) {
         throw new Error('Bucket not found');
       }
