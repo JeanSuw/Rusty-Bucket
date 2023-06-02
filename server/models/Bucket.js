@@ -30,7 +30,7 @@ const bucketSchema = new mongoose.Schema({
     {
       content: {
         type: String,
-        required: true
+        required: true,
       },
       createdAt: {
         type: Date,
