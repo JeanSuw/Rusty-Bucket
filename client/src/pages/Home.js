@@ -6,8 +6,4 @@
 // //import {  } from '../utils/queries';
 
 // const Home = () => {
-//     // const { loading, data } = useQuery(QUERY_THOUGHTS);
-
-// };
-
-// export default Home;
+//     // const { loading, data } = useQuery(
