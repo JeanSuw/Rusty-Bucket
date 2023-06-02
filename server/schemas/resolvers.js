@@ -91,13 +91,13 @@ const resolvers = {
       if (!context.user) {
         throw new Error('Authentication required');
       }
-
+      // Check if the user is logged in
       const userId = context.user._id;
 
-      
+      // Find the user by their ID and check if the bucket with the provided ID belongs to the user
       const user = await User.findOne({ _id: userId, buckets: id });
 
-     
+     // Check if the user exists and owns the bucket
       if (!user) {
         throw new Error('Unauthorized');
       }
