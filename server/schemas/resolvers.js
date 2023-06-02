@@ -86,6 +86,32 @@ const resolvers = {
       return bucket;
     },
 
+    deleteBucket: async (parent, { id }, context) => {
+    
+      if (!context.user) {
+        throw new Error('Authentication required');
+      }
+      // Check if the user is logged in 
+      const userId = context.user._id;
+
+      // Find the user by their ID and check if the bucket with the provided ID belongs to the user
+      const user = await User.findOne({ _id: userId, buckets: id });
+
+     // Check if the user exists and owns the bucket
+      if (!user) {
+        throw new Error('Unauthorized');
+      }
+
+       // Delete the bucket
+      const deletedBucket = await Bucket.findByIdAndDelete(id);
+
+       // Check if the deleted bucket exists
+      if (!deletedBucket) {
+        throw new Error('Bucket not found');
+      }
+
+      return deletedBucket;
+    },
 
     updateBucket: async (parent, { id, title, description, status, dueDate, priority }, context) => {
       if (!context.user) {
@@ -107,7 +133,7 @@ const resolvers = {
       await bucket.save();
     
       return bucket
-    }  ,
+    },
     
     addNoteToBucket: async (_, { bucketId, content }) => {
       const bucket = await Bucket.findById(bucketId);
