@@ -86,6 +86,32 @@ const resolvers = {
       return bucket;
     },
 
+    deleteBucket: async (parent, { id }, context) => {
+    
+      if (!context.user) {
+        throw new Error('Authentication required');
+      }
+
+      const userId = context.user._id;
+
+      
+      const user = await User.findOne({ _id: userId, buckets: id });
+
+     
+      if (!user) {
+        throw new Error('Unauthorized');
+      }
+
+    
+      const deletedBucket = await Bucket.findByIdAndDelete(id);
+
+      
+      if (!deletedBucket) {
+        throw new Error('Bucket not found');
+      }
+
+      return deletedBucket;
+    },
 
     updateBucket: async (parent, { id, title, description, status, dueDate, priority }, context) => {
       if (!context.user) {
@@ -107,7 +133,7 @@ const resolvers = {
       await bucket.save();
     
       return bucket
-    }  ,
+    },
     
     addNoteToBucket: async (_, { bucketId, content }) => {
       const bucket = await Bucket.findById(bucketId);
