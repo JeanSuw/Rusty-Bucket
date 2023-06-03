@@ -4,9 +4,12 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
+//import { css } from '@emotion/css'
 
 //import { Link } from 'react-router-dom';
 //import Auth from '../utils/auth';
+import Loginform from '../components/Loginform';
+import Signupform from '../components/Signupform';
 // import Home Page with Pictures
 // import Profile page here
 // import login/signup form
@@ -46,7 +49,7 @@ function a11yProps(index) {
   };
 }
 
-export default function BasicTabs() {
+function BasicTabs() {
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
@@ -64,6 +67,9 @@ export default function BasicTabs() {
       </Box>
       <TabPanel value={value} index={0}>
         Insert Home page Here
+        {/* This is the part where we add 6 cards and login/signin button */}
+        <li>We might need a title</li>
+        <li>6 Cards to represent top 6 things to do for the bucketlist</li>
 
       </TabPanel>
       <TabPanel value={value} index={1}>
@@ -71,19 +77,12 @@ export default function BasicTabs() {
         
       </TabPanel>
       <TabPanel value={value} index={2}>
-        Insert Login here
-        {/* if user is logged in show saved list and logout */}
-        {/* {Auth.loggedIn() ? (
-            <>
-                <Tab.Link as={Link} to='/saved'>
-                    Here's your bucket list
-                </Tab.Link>
-                <Tab.Link onClick={Auth.logout}>Logout</Tab.Link>
-            </>
-        ) : (
-            <Tab.Link onClick={() => setValue(true)}>Login/Sign Up</Tab.Link>
-        )} */}
+        <Signupform/>
+        <Loginform />
       </TabPanel>
     </Box>
   );
 }
+
+export default BasicTabs;
+
