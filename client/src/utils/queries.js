@@ -1,5 +1,4 @@
 import { gql } from '@apollo/client';
-​
 
 //get logged_in user
 export const QUERY_CURRENTUSER = gql`
@@ -28,7 +27,7 @@ query getCurrentUser {
 `;
 
 //get all buckets 
-​export const QUERY_BUCKETS = gql`
+export const QUERY_BUCKETS = gql`
 query getBuckets {
     buckets {
       id
@@ -43,11 +42,9 @@ query getBuckets {
       }
     }
   }
-  `;
-
+`;
 
 //get a bucket
-
 export const QUERY_SINGLE_BUCKET = gql`
 query getSingleBucket ($bucketId: ID!) {
     bucket(id: $bucketId) {
@@ -64,7 +61,6 @@ query getSingleBucket ($bucketId: ID!) {
     }
   }
 `;
-​
 
 // get bucket by userID
 // issue: code return values for email, password, username, but error occures because buckets return as null and this value cannot be null
