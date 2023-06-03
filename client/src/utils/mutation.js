@@ -1,5 +1,4 @@
 import { gql } from '@apollo/client';
-​
 
 export const LOGIN_USER = gql`
   mutation logIn($email: String!, $password: String!) {
@@ -12,7 +11,6 @@ export const LOGIN_USER = gql`
     }
   }
 `;
-​
 
 
 export const ADD_USER = gql`
@@ -26,8 +24,6 @@ export const ADD_USER = gql`
     }
   }
 `;
-​
-
 
 export const ADD_BUCKET = gql`
   mutation  createBucket($title: String!, $description: String!, $status: String!, $priority: Int!, $dueDate: String) {
