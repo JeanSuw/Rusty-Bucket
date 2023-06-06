@@ -85,4 +85,3 @@ function BasicTabs() {
 }
 
 export default BasicTabs;
-
