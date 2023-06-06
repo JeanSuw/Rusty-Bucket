@@ -14,6 +14,7 @@ const typeDefs = gql`
     status: String!
     dueDate: String
     priority: Int!
+    createdAt:String
     isOverDue: Boolean!
     notes: [Note!]!
   }
@@ -40,7 +41,8 @@ const typeDefs = gql`
   }
 
   type Mutation {
-    addUser(email: String!, username: String!, password: String!): Auth!
+    # addUser(email: String!, username: String!, password: String!): Auth!
+    addUser(username: String!, email: String!, password: String!): Auth
     signIn(email: String!, password: String!): Auth!
     createBucket(title: String!, description: String!, status: String!, dueDate: String, priority: Int!): Bucket!
     updateBucket(id: ID!, title: String, description: String, status: String, dueDate: String, priority: Int): Bucket

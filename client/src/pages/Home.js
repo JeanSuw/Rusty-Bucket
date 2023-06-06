@@ -1,13 +1,12 @@
-// import React from 'react';
-// import { useQuery } from '@apollo/client';
+import React from 'react';
 
-// import { BasicTabs } from '../components/Navbar';
+const Home = () => {
+  return (
+    <div>
+      <h1>Coming Soon</h1>
+      <p>We are working on something exciting. Stay tuned!</p>
+    </div>
+  );
+};
 
-// //import {  } from '../utils/queries';
-
-// const Home = () => {
-//     // const { loading, data } = useQuery(QUERY_THOUGHTS);
-
-// };
-
-// export default Home;
+export default Home;
