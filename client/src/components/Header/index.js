@@ -1,5 +1,3 @@
-
-
 // export default Header;
 import React from 'react';
 import { AppBar, Toolbar, Typography, Button } from '@material-ui/core';
@@ -10,6 +8,8 @@ const Header = () => {
     const logout = (event) => {
     event.preventDefault();
     Auth.logout();
+    //redirect users back to homepage after logging out //
+    window.location.href = '/';
   };
   return (
     <AppBar position="static">
@@ -29,6 +29,6 @@ const Header = () => {
       </Toolbar>
     </AppBar>
   );
-}
+};
 
 export default Header;
