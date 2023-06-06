@@ -8,6 +8,8 @@ import { TextField, Button, Typography } from '@mui/material';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { useNavigate } from 'react-router-dom';
+import { InputLabel, FormControl, Select, MenuItem } from '@mui/material';
+
 
 const BucketForm = () => {
   const [bucketData, setBucketData] = useState({
@@ -88,16 +90,26 @@ const BucketForm = () => {
             fullWidth
           />
         </div>
+
+{/* issue: to prevent users from adding past dates */}
         <div className="form-field">
-          <TextField
-            label="Status"
-            id="status"
-            name="status"
-            value={bucketData.status}
-            onChange={handleInputChange}
-            fullWidth
-          />
-        </div>
+        <FormControl fullWidth>
+        <InputLabel id="status-label"> Status </InputLabel>
+        <Select
+          label="Status"
+          id="status"
+          name="status"
+          value={bucketData.status}
+          onChange={handleInputChange}
+          fullWidth
+        >
+          <MenuItem value="Not Started"> Not Started </MenuItem>
+          <MenuItem value="In Progress"> In Progress </MenuItem>
+          <MenuItem value="Completed"> Completed </MenuItem>
+        </Select>
+      </FormControl>
+    </div>
+
         <div className="form-field">
           <DatePicker
             selected={bucketData.dueDate}
