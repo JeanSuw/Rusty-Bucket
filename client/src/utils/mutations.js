@@ -48,7 +48,7 @@ mutation deleteBucket($deleteBucketId: ID!) {
 }
 `;
 
-// add note to a bucket. need bucket id. status 200
+// Adding not to a bucket which blongs to loggedIn user
 export const ADD_NOTE_TO_BUCKET = gql`
 mutation addNoteToBucket($bucketId: ID!, $content: String!) {
   addNoteToBucket(bucketId: $bucketId, content: $content) {

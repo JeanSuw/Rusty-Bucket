@@ -150,15 +150,32 @@ const resolvers = {
       return updatedBucket;
     },
     
-    addNoteToBucket: async (_, { bucketId, content }) => {
+     //Adding notes to buckets. Only loggedIn users add notes to buckets which belongs to them
+    addNoteToBucket: async (_, { bucketId, content }, context) => {
+      if (!context.user) {
+        throw new Error('Authentication required');
+      }
+    
+      const userId = context.user._id;
+    
+      // Find the user by their ID and check if the bucket with the provided ID belongs to the user
+      const user = await User.findOne({ _id: userId, buckets: bucketId });
+    
+      if (!user) {
+        throw new Error('Unauthorized');
+      }
+    
       const bucket = await Bucket.findById(bucketId);
       if (!bucket) {
         throw new Error('Bucket not found');
       }
+    
       bucket.notes.push({ content, createdAt: new Date().toISOString() });
       await bucket.save();
+    
       return bucket.notes[bucket.notes.length - 1];
     },
+    
 
     deleteNoteFromBucket: async (parent, { bucketId, noteId }) => {
       const bucket = await Bucket.findByIdAndUpdate(bucketId, { $pull: { notes: { _id: noteId } } }, { new: true })
