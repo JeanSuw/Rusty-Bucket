@@ -39,25 +39,12 @@ export const ADD_BUCKET = gql`
   }
 `;
 
-// delete bucket. need bucket ID // status 200 w deleteBucket: null
-// issue: need to add a function for delete bucket in typeDef under Server files
-
+// Delete bucket by Id - only logged in users are authorized to delete their id
 export const DELETE_BUCKET = gql`
 mutation deleteBucket($deleteBucketId: ID!) {
-  deleteBucket(id: $deleteBucketId) {
+  eleteBucket(id: $deleteBucketId) {
     id
-    title
-    description
-    status
-    dueDate
-    priority
-    isOverDue
-    notes {
-      id
-      content
-      createdAt
     }
-  }
 }
 `;
 
