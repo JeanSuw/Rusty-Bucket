@@ -44,7 +44,7 @@ query getBuckets {
       }
     }
   }
-`;
+  `;
 
 //get a bucket
 export const QUERY_SINGLE_BUCKET = gql`
