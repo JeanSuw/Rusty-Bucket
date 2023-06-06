@@ -1,3 +1,4 @@
+<<<<<<< HEAD
  //import React from 'react';
  //import { useQuery } from '@apollo/client';
 
@@ -125,3 +126,17 @@ const itemData = [
 ];
  
  
+=======
+import React from 'react';
+
+const Home = () => {
+  return (
+    <div>
+      <h1>Coming Soon</h1>
+      <p>We are working on something exciting. Stay tuned!</p>
+    </div>
+  );
+};
+
+export default Home;
+>>>>>>> b72df987145b79f90e675d77d06bb22579b1140f

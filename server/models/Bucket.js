@@ -16,7 +16,7 @@ const bucketSchema = new mongoose.Schema({
   },
   dueDate: {
     type: Date,
-    get: (timestamp) => dateFormat(timestamp),
+    // get: (timestamp) => dateFormat(timestamp),
   },
   priority: {
     type: Number,
@@ -25,6 +25,11 @@ const bucketSchema = new mongoose.Schema({
   isOverDue: {
     type: Boolean,
     default: false
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  
   },
   notes: [
     {
