@@ -12,6 +12,7 @@ query getCurrentUser {
         dueDate
         priority
         isOverDue
+        createdAt
         notes {
           id
           content
@@ -36,6 +37,7 @@ query getBuckets {
       dueDate
       isOverDue
       priority
+      createdAt
       status
       notes {
         id
@@ -62,27 +64,9 @@ query getSingleBucket ($bucketId: ID!) {
   }
 `;
 
-// get bucket by userID
-// issue: code return values for email, password, username, but error occures because buckets return as null and this value cannot be null
-
-// export const QUERY_USER_BY_ID = gql`
-// query getUserByID($userId: ID!) {
-//   user(id: $userId) {
-//     email
-//     password
-//     username
-//     buckets {
-//       description
-//     }
-//   }
-// }
-// `;
-
-
-// get usersWithBuckets will return ID, username, email and bucket title for any user that has at least one bucket item
 
 export const QUERY_USERSWITHBUCKETS = gql`
-uery getUsersWithBuckets {
+query getUsersWithBuckets {
   usersWithBuckets {
     id
     username
