@@ -114,26 +114,40 @@ const resolvers = {
       return deletedBucket;
     },
 
+
     updateBucket: async (parent, { id, title, description, status, dueDate, priority }, context) => {
       if (!context.user) {
-        throw new AuthenticationError('Not authenticated');
+        throw new Error('Authentication required');
       }
     
+      const userId = context.user._id;
+    
+      // Find the user by their ID and check if the bucket with the provided ID belongs to the user
+      const user = await User.findOne({ _id: userId, buckets: id });
+    
+      if (!user) {
+        throw new Error('Unauthorized');
+      }
+    
+      // Find the bucket
       const bucket = await Bucket.findById(id);
+    
       if (!bucket) {
         throw new Error('Bucket not found');
       }
     
+      // Update the bucket properties if input values are provided
       bucket.title = title || bucket.title;
       bucket.description = description || bucket.description;
       bucket.status = status || bucket.status;
-      //bucket.dueDate = dueDate ? new Date(dueDate) : bucket.dueDate; // Convert the dueDate to a Date object if provided
-      bucket.dueDate = dueDate;
+      bucket.dueDate = dueDate || bucket.dueDate;
       bucket.priority = priority || bucket.priority;
+      // Update other properties as needed
     
-      await bucket.save();
+      // Save the changes to the database
+      const updatedBucket = await bucket.save();
     
-      return bucket
+      return updatedBucket;
     },
     
     addNoteToBucket: async (_, { bucketId, content }) => {

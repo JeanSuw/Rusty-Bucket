@@ -49,7 +49,6 @@ mutation deleteBucket($deleteBucketId: ID!) {
 `;
 
 // add note to a bucket. need bucket id. status 200
-
 export const ADD_NOTE_TO_BUCKET = gql`
 mutation addNoteToBucket($bucketId: ID!, $content: String!) {
   addNoteToBucket(bucketId: $bucketId, content: $content) {
@@ -71,16 +70,18 @@ mutation DeleteNoteFromBucket($bucketId: ID!, $noteId: ID!) {
   }
 }
 `;
-
-// update bucket but only allows description, due date, title // need authorization token
-// issue: how to input variables for title, description and duedate?
+//Update bucket by Id
 export const UPDATE_BUCKET = gql`
-mutation UpdateBucket($updateBucketId: ID!) {
-  updateBucket(id: $updateBucketId) {
+mutation UpdateBucket($updateBucketId: ID!, $description: String, $status: String, $dueDate: String, $priority: Int, $title: String) {
+  updateBucket(id: $updateBucketId, description: $description, status: $status, dueDate: $dueDate, priority: $priority, title: $title) {
+    id
     title
     description
+    status
     dueDate
+    priority
+    createdAt
+    isOverDue
   }
 }
 `;
-
