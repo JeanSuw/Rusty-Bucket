@@ -20,7 +20,7 @@ const BucketForm = () => {
     priority: '',
   });
 
-  const [addBucket, { error }] = useMutation(ADD_BUCKET);
+  const [addBucket] = useMutation(ADD_BUCKET);
   const navigate = useNavigate();
 
   const handleInputChange = (event) => {
@@ -37,7 +37,7 @@ const BucketForm = () => {
 
     // Check if the due date is null or empty
     if (!bucketData.dueDate) {
-      // Display an error message or handle the validation error as desired
+      // Display validtion error
       console.error('Due date is required');
       return;
     }
@@ -59,6 +59,7 @@ const BucketForm = () => {
       });
       // Redirect to profile page
       navigate('/profile');
+      window.location.reload();
     } catch (err) {
       console.error(err);
     }
