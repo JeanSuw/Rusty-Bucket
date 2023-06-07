@@ -3,6 +3,7 @@ import React from 'react';
 import { AppBar, Toolbar, Typography, Button } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import Auth from '../../utils/auth';
+import { css } from '@emotion/css';
 
 const Header = () => {
     const logout = (event) => {
@@ -13,7 +14,9 @@ const Header = () => {
   };
   return (
     <AppBar position="static">
-      <Toolbar>
+      <Toolbar className={css`
+      background-color: #ffab40;`
+      }>
         <Typography variant="h6" style={{ flexGrow: 1 }}>
          Rusty Bucket
         </Typography>

@@ -81,6 +81,29 @@ import { formatDate } from '../utils/formatDate';
 import { Button, Typography } from '@mui/material';
 import Auth from '../utils/auth';
 
+//import orange from '@material-ui/core/colors/orange';
+//import { css } from '@emotion/css'
+//const primary = orange[200];
+//import { ThemeProvider, createTheme } from "@material-ui/core/styles";
+//import { createTheme } from '@material-ui/core/styles';
+// const theme = createTheme({
+//   palette: {
+//     primary: {
+//       light: '#ffd740',
+//     },
+//   },
+// });
+// Button color : Gold
+// const createMuiTheme = () => {
+//   return createTheme({
+//     palette: {
+//       primary: {
+//         main: '#ffd740', 
+//       }
+//     }
+//   })
+// };
+
 const Profile = () => {
   const { loading, error, data } = useQuery(QUERY_CURRENTUSER);
   const navigate = useNavigate();
@@ -134,6 +157,7 @@ const Profile = () => {
 
   return (
     <div>
+      
       <Typography variant="h4" align="center" gutterBottom>
         Bucket List
       </Typography>
@@ -143,6 +167,7 @@ const Profile = () => {
       <div style={{ height: 400, width: '100%' }}>
         <DataGrid rows={rows} columns={columns} />
       </div>
+      
     </div>
   );
 };
