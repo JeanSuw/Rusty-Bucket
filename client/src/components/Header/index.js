@@ -15,7 +15,7 @@ const Header = () => {
   return (
     <AppBar position="static">
       <Toolbar className={css`
-      background-color: #ffab40;`
+      background-color: #C3996F;`
       }>
         <Typography variant="h6" style={{ flexGrow: 1 }}>
          Rusty Bucket
