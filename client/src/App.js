@@ -15,6 +15,26 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import BucketForm from './components/BucketForm';
 
+import CssBaseline from "@material-ui/core/CssBaseline";
+import { MuiThemeProvider, ThemeProvider, createTheme } from "@material-ui/core/styles";
+
+const themeDefault= createTheme({
+  palette: {
+    background: {
+      default: "#FFE0B2"
+    }
+  }
+});
+
+
+const createMuiTheme = createTheme({
+  palette: {
+    primary: {
+      main: "#ffd740"
+    }
+  }
+});
+
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -42,40 +62,47 @@ const client = new ApolloClient({
 function App() {
   return (
     <ApolloProvider client={client}>
-      <Router>
-        <div className="flex-column justify-flex-start min-100-vh">
-          <Header />
-          <div className="container">
-            <Routes>
-              <Route 
-                path="/"
-                element={<Home />}
-              />
-               <Route 
-                path="/signup-login" 
-                element={<SignUpLogInPage />}
-              />
-              <Route 
-                path="/profile" 
-                element={<Profile />}
-              />
+      <ThemeProvider theme={createMuiTheme}>
+      <MuiThemeProvider theme={themeDefault} >
+        <CssBaseline/>
         
-               <Route 
-                path="/addBucket" 
-                element={<BucketForm />}
-              />
-              <Route 
-                path="/profiles/:username" 
-                element={<Profile />}
-              />
-               <Route path="/singleBucket/:id" 
-               element={<SingleBucket />}
-                />
-            </Routes>
-          </div>
-          <Footer />
-        </div>
-      </Router>
+          <Router>
+            <div className="flex-column justify-flex-start min-100-vh">
+              <Header />
+              <div className="container">
+                <Routes>
+                  <Route 
+                    path="/"
+                    element={<Home />}
+                  />
+                  <Route 
+                    path="/signup-login" 
+                    element={<SignUpLogInPage />}
+                  />
+                  <Route 
+                    path="/profile" 
+                    element={<Profile />}
+                  />
+            
+                  <Route 
+                    path="/addBucket" 
+                    element={<BucketForm />}
+                  />
+                  <Route 
+                    path="/profiles/:username" 
+                    element={<Profile />}
+                  />
+                  <Route path="/singleBucket/:id" 
+                  element={<SingleBucket />}
+                    />
+                </Routes>
+              </div>
+              <Footer />
+            </div>
+          </Router>
+        
+      </MuiThemeProvider>
+      </ThemeProvider>
     </ApolloProvider>
   );
 }
