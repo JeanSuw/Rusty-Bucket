@@ -176,12 +176,32 @@ const resolvers = {
       return bucket.notes[bucket.notes.length - 1];
     },
     
-
     deleteNoteFromBucket: async (parent, { bucketId, noteId }) => {
-      const bucket = await Bucket.findByIdAndUpdate(bucketId, { $pull: { notes: { _id: noteId } } }, { new: true })
-        .populate('notes');
-      return bucket;
+      // Find the bucket by ID
+      const bucket = await Bucket.findById(bucketId);
+    
+      // Check if the bucket exists
+      if (!bucket) {
+        throw new Error('Bucket not found');
+      }
+    
+      // Find the index of the note to be deleted in the notes array
+      const noteIndex = bucket.notes.findIndex(note => note._id.toString() === noteId);
+    
+      // Check if the note exists
+      if (noteIndex === -1) {
+        throw new Error('Note not found');
+      }
+    
+      // Remove the note from the notes array
+      const deletedNote = bucket.notes.splice(noteIndex, 1)[0];
+    
+      // Save the changes to the bucket
+      await bucket.save();
+    
+      return deletedNote;
     },
+    
   },
 };
 
