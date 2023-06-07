@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../../utils/mutations';
 
 import Auth from '../../utils/auth';
 
 const Login = (props) => {
+  const navigate = useNavigate();
   const [formState, setFormState] = useState({ email: '', password: '' });
   const [login, { error, data }] = useMutation(LOGIN_USER);
 
@@ -30,6 +31,10 @@ const Login = (props) => {
 
       Auth.login(data.signIn.token);
       console.log(data.signIn.token);
+
+      if (data) {
+        navigate('/profile'); // Redirect to the profile page
+      }
     } catch (e) {
       console.error(e);
     }

@@ -114,43 +114,94 @@ const resolvers = {
       return deletedBucket;
     },
 
+
     updateBucket: async (parent, { id, title, description, status, dueDate, priority }, context) => {
       if (!context.user) {
-        throw new AuthenticationError('Not authenticated');
+        throw new Error('Authentication required');
       }
     
+      const userId = context.user._id;
+    
+      // Find the user by their ID and check if the bucket with the provided ID belongs to the user
+      const user = await User.findOne({ _id: userId, buckets: id });
+    
+      if (!user) {
+        throw new Error('Unauthorized');
+      }
+    
+      // Find the bucket
       const bucket = await Bucket.findById(id);
+    
       if (!bucket) {
         throw new Error('Bucket not found');
       }
     
+      // Update the bucket properties if input values are provided
       bucket.title = title || bucket.title;
       bucket.description = description || bucket.description;
       bucket.status = status || bucket.status;
-      //bucket.dueDate = dueDate ? new Date(dueDate) : bucket.dueDate; // Convert the dueDate to a Date object if provided
-      bucket.dueDate = dueDate;
+      bucket.dueDate = dueDate || bucket.dueDate;
       bucket.priority = priority || bucket.priority;
+      // Update other properties as needed
     
-      await bucket.save();
+      // Save the changes to the database
+      const updatedBucket = await bucket.save();
     
-      return bucket
+      return updatedBucket;
     },
     
-    addNoteToBucket: async (_, { bucketId, content }) => {
+     //Adding notes to buckets. Only loggedIn users add notes to buckets which belongs to them
+    addNoteToBucket: async (_, { bucketId, content }, context) => {
+      if (!context.user) {
+        throw new Error('Authentication required');
+      }
+    
+      const userId = context.user._id;
+    
+      // Find the user by their ID and check if the bucket with the provided ID belongs to the user
+      const user = await User.findOne({ _id: userId, buckets: bucketId });
+    
+      if (!user) {
+        throw new Error('Unauthorized');
+      }
+    
       const bucket = await Bucket.findById(bucketId);
       if (!bucket) {
         throw new Error('Bucket not found');
       }
+    
       bucket.notes.push({ content, createdAt: new Date().toISOString() });
       await bucket.save();
+    
       return bucket.notes[bucket.notes.length - 1];
     },
-
+    
     deleteNoteFromBucket: async (parent, { bucketId, noteId }) => {
-      const bucket = await Bucket.findByIdAndUpdate(bucketId, { $pull: { notes: { _id: noteId } } }, { new: true })
-        .populate('notes');
-      return bucket;
+      // Find the bucket by ID
+      const bucket = await Bucket.findById(bucketId);
+    
+      // Check if the bucket exists
+      if (!bucket) {
+        throw new Error('Bucket not found');
+      }
+    
+      // Find the index of the note to be deleted in the notes array
+      const noteIndex = bucket.notes.findIndex(note => note._id.toString() === noteId);
+    
+      // Check if the note exists
+      if (noteIndex === -1) {
+        throw new Error('Note not found');
+      }
+    
+      // Remove the note from the notes array
+      const deletedNote = bucket.notes.splice(noteIndex, 1)[0];
+    
+      // Save the changes to the bucket
+      await bucket.save();
+    
+      return deletedNote;
     },
+    
   },
 };
 
