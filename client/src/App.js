@@ -69,7 +69,7 @@ function App() {
           <Router>
             <div className="flex-column justify-flex-start min-100-vh">
               <Header />
-              <div className="container">
+              <div className="container" style={{ marginTop: '20px' }} >
                 <Routes>
                   <Route 
                     path="/"
