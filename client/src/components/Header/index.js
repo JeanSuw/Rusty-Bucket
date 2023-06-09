@@ -1,19 +1,22 @@
-
-
 // export default Header;
 import React from 'react';
 import { AppBar, Toolbar, Typography, Button } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import Auth from '../../utils/auth';
+import { css } from '@emotion/css';
 
 const Header = () => {
     const logout = (event) => {
     event.preventDefault();
     Auth.logout();
+    //redirect users back to homepage after logging out //
+    window.location.href = '/';
   };
   return (
     <AppBar position="static">
-      <Toolbar>
+      <Toolbar className={css`
+      background-color: #C3996F;`
+      }>
         <Typography variant="h6" style={{ flexGrow: 1 }}>
          Rusty Bucket
         </Typography>
@@ -29,6 +32,6 @@ const Header = () => {
       </Toolbar>
     </AppBar>
   );
-}
+};
 
 export default Header;

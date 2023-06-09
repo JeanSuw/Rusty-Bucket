@@ -8,6 +8,8 @@ import { TextField, Button, Typography } from '@mui/material';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { useNavigate } from 'react-router-dom';
+import { InputLabel, FormControl, Select, MenuItem } from '@mui/material';
+
 
 const BucketForm = () => {
   const [bucketData, setBucketData] = useState({
@@ -18,7 +20,7 @@ const BucketForm = () => {
     priority: '',
   });
 
-  const [addBucket, { error }] = useMutation(ADD_BUCKET);
+  const [addBucket] = useMutation(ADD_BUCKET);
   const navigate = useNavigate();
 
   const handleInputChange = (event) => {
@@ -35,7 +37,7 @@ const BucketForm = () => {
 
     // Check if the due date is null or empty
     if (!bucketData.dueDate) {
-      // Display an error message or handle the validation error as desired
+      // Display validtion error
       console.error('Due date is required');
       return;
     }
@@ -57,6 +59,7 @@ const BucketForm = () => {
       });
       // Redirect to profile page
       navigate('/profile');
+      window.location.reload();
     } catch (err) {
       console.error(err);
     }
@@ -88,16 +91,26 @@ const BucketForm = () => {
             fullWidth
           />
         </div>
+
+{/* issue: to prevent users from adding past dates */}
         <div className="form-field">
-          <TextField
-            label="Status"
-            id="status"
-            name="status"
-            value={bucketData.status}
-            onChange={handleInputChange}
-            fullWidth
-          />
-        </div>
+        <FormControl fullWidth>
+        <InputLabel id="status-label"> Status </InputLabel>
+        <Select
+          label="Status"
+          id="status"
+          name="status"
+          value={bucketData.status}
+          onChange={handleInputChange}
+          fullWidth
+        >
+          <MenuItem value="Not Started"> Not Started </MenuItem>
+          <MenuItem value="In Progress"> In Progress </MenuItem>
+          <MenuItem value="Completed"> Completed </MenuItem>
+        </Select>
+      </FormControl>
+    </div>
+
         <div className="form-field">
           <DatePicker
             selected={bucketData.dueDate}

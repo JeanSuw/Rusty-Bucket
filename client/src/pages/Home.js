@@ -10,21 +10,32 @@
 //};
 
 //export default Home;
-import * as React from 'react';
-import { css } from '@emotion/css';
+import  React from 'react';
+//import { css } from '@emotion/css';
+import {ActionAreaCard} from '../Card.js';
+import {Grid} from '@material-ui/core';
 
 
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Typography from '@mui/material/Typography';
-import { CardActionArea } from '@mui/material';
-import hotairballoon from '../images/hot-air-balloon.jpg';
-import northernlights from '../images/northernlights.jpg';
-import pyramid from '../images/pyramid.jpg';
+export default function Home (){
+  return(
+    <Grid container spacing ={4}>
+    <Grid item xs={12} sm={6} md={4}>
+    <ActionAreaCard/>
+    </Grid>
+    <Grid item xs={12}>
+      <ActionAreaCard/>
+    </Grid>
+    </Grid>
+   
+  )
+}
 
-export default function ActionAreaCard() {
-  return (
+
+
+
+  
+  
+      
    
   
 
