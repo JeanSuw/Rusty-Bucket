@@ -5,7 +5,8 @@ import { useQuery } from '@apollo/client';
 import { DataGrid } from '@mui/x-data-grid';
 import { QUERY_CURRENTUSER } from '../utils/queries';
 import { formatDate } from '../utils/formatDate';
-import { Button, Typography } from '@mui/material';
+import {  Typography } from '@mui/material';
+// Button,
 import Auth from '../utils/auth';
 
 const Profile = () => {
@@ -66,13 +67,13 @@ const Profile = () => {
         Bucket List
       </Typography>
       {/* Change color for the button "CREATE NEW BUCKET" here in line 70 in style */}
-      <Button variant="contained" style={{backgroundColor: "#382D45"}} fullWidth onClick={handleCreateBucket}>
+      <button className="custom-button" variant="contained" fullWidth onClick={handleCreateBucket}>
         Create New Bucket
-      </Button>
+      </button>
       {/* Change color of the table*/}
-      <div style={{ height: 400, width: '100%', backgroundColor: "#706281", color: "white"}}>
+      <div style={{ height: 400, width: '100%'}}>
         {/* Change the color of the text to white */}
-        <DataGrid rows={rows} columns={columns} style={{color: "white"}} />
+        <DataGrid rows={rows} columns={columns} style={{color: "black"}} />
       </div>
       
     </div>
