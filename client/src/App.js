@@ -14,6 +14,7 @@ import Profile from './pages/Profile';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import BucketForm from './components/BucketForm';
+import BucketUpdateForm from './components/BucketUpdateForm';
 
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { MuiThemeProvider, ThemeProvider, createTheme } from "@material-ui/core/styles";
@@ -94,6 +95,9 @@ function App() {
                   />
                   <Route path="/singleBucket/:id" 
                   element={<SingleBucket />}
+                    />
+                     <Route path="/bucket/update/:id" 
+                  element={<BucketUpdateForm />}
                     />
                 </Routes>
               </div>
