@@ -1,5 +1,8 @@
+
+// module.exports = Bucket;
 const mongoose = require('mongoose');
 const dateFormat = require('../utils/dateFormat');
+
 const bucketSchema = new mongoose.Schema({
   title: {
     type: String,
@@ -22,14 +25,9 @@ const bucketSchema = new mongoose.Schema({
     type: Number,
     default: 1
   },
-  isOverDue: {
-    type: Boolean,
-    default: false
-  },
   createdAt: {
     type: Date,
     default: Date.now,
-  
   },
   notes: [
     {
@@ -40,20 +38,16 @@ const bucketSchema = new mongoose.Schema({
       createdAt: {
         type: Date,
         default: Date.now,
-      
       }
     }
   ]
 });
 
-bucketSchema.pre('save', function (next) {
-  // Check if the dueDate has passed
+bucketSchema.virtual('isOverDue').get(function () {
   if (this.dueDate && this.dueDate < new Date()) {
-    this.isOverDue = true;
-  } else {
-    this.isOverDue = false;
+    return true;
   }
-  next();
+  return false;
 });
 
 const Bucket = mongoose.model('Bucket', bucketSchema);

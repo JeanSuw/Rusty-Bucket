@@ -11,6 +11,9 @@
 
 //export default Home;
 import * as React from 'react';
+import { css } from '@emotion/css';
+
+
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
@@ -22,27 +25,8 @@ import pyramid from '../images/pyramid.jpg';
 
 export default function ActionAreaCard() {
   return (
-    <Card sx={{ maxWidth: 345 }}>
-      <CardActionArea>
-        <CardMedia
-          component="img" 
-          height="254"
-          image= {hotairballoon}
-          alt="hot air Balloon"
-        />
-        <CardContent>
-          <Typography gutterBottom variant="h4" fontWeight="bold" component="div">
-            Hot Air Balloon
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-          </Typography>
-        </CardContent>
-      </CardActionArea>
-    </Card>
-
-
-  );
-}
+   
+  
 
 
 
