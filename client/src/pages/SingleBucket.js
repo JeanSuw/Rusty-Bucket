@@ -3,7 +3,7 @@
 import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useQuery, useMutation } from '@apollo/client';
-import { Card, CardContent, Typography, Button, CardHeader} from '@mui/material';
+import { Card, CardContent, Typography, Button, CardHeader } from '@mui/material';
 import { DataGrid } from '@mui/x-data-grid';
 import { QUERY_SINGLE_BUCKET } from '../utils/queries';
 import { DELETE_NOTE_FROM_BUCKET, DELETE_BUCKET } from '../utils/mutations';
@@ -89,7 +89,7 @@ const SingleBucket = () => {
 
   return (
     <div>
-      <Card sx={{ backgroundColor: 'transparent', border: '1px solid #ccc', boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)' }}>
+      <Card sx={{ backgroundColor: 'transparent', border: '1px solid brown', boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)' }}>
         <CardHeader sx={{ backgroundColor: 'goldenrod' }}
           title={
             <Typography variant="h5" component="div" sx={{ fontWeight: 'bold' }}>
@@ -119,13 +119,20 @@ const SingleBucket = () => {
           <Typography variant="body1" color="text.secondary">
             Created At: {formatDate(bucket.createdAt)}
           </Typography>
-          
-          <Typography variant="h5" component="div" mt={4}>
+
+          <Typography variant="h5" component="div" style={{ borderTop: '2px solid brown' }}>
             Notes
           </Typography>
-          <button className="custom-button" onClick={handleUpdateBucket}>
+          {/* <button className="custom-button" onClick={handleUpdateBucket}>
             Add Note
-          </button>
+          </button> */}
+          <Button
+            variant="outlined"
+            style={{ color: 'green', borderColor: 'green' }}
+          >
+            Add New Note
+          </Button>
+
           <div style={{ height: 300, width: '100%' }}>
             <DataGrid rows={rows} columns={columns} />
           </div>

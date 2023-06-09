@@ -18,10 +18,9 @@ const BucketUpdateForm = () => {
     title: '',
     description: '',
     status: '',
-    dueDate: new Date(),
+    dueDate: null,
     priority: '',
   });
-
   const { loading, error, data } = useQuery(QUERY_SINGLE_BUCKET, {
     variables: { bucketId: id },
   });
@@ -31,7 +30,7 @@ const BucketUpdateForm = () => {
   useEffect(() => {
     if (data) {
       const { title, description, status, dueDate, priority } = data.bucket;
-      console.log(dueDate)
+      console.log(dueDate, "due")
       setBucketData({
         title,
         description,
@@ -47,24 +46,23 @@ const BucketUpdateForm = () => {
     setBucketData({ ...bucketData, [name]: value });
   };
 
+  let initialDueDate = parseInt(bucketData.dueDate);
+  console.log(initialDueDate ,"initial")
   const handleDateChange = (date) => {
-    console.log('Selected Date:', date); // Add this line to check the value
-  
-    let updatedDate;
-    if (typeof date === 'string') {
-      updatedDate = new Date(date);
-    } else if (date instanceof Date) {
-      updatedDate = date;
-    } else {
-      console.error('Invalid date');
-      return;
-    }
-  
-    updatedDate.setHours(0, 0, 0, 0);
-    setBucketData({ ...bucketData, dueDate: updatedDate });
+    console.log(date, "date pickr date")
+    // Create a new Date object with the provided date string
+    var date = new Date(date);
+
+    // Get the Unix timestamp by dividing the milliseconds by 1000 and rounding it off
+    var unixTimestamp = Math.round(date.getTime() / 1000);
+
+    // Display the Unix timestamp
+    console.log(unixTimestamp ,"unix");
+    setBucketData({ ...bucketData, dueDate: date });
+    initialDueDate = parseInt(unixTimestamp)
+    console.log(initialDueDate ,"initial2")
   };
-
-
+  
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
@@ -95,7 +93,7 @@ const BucketUpdateForm = () => {
   if (error) {
     return <p>Error: {error.message}</p>;
   }
-
+  // console.log(bucketData)
   return (
     <div className="bucket-form-container">
       <Typography variant="h4" align="center" gutterBottom>
@@ -140,9 +138,21 @@ const BucketUpdateForm = () => {
           </FormControl>
         </div>
         <div className="form-field">
+          <DatePicker
+            // selected={parseInt(bucketData.dueDate)}
+            selected={initialDueDate}
+            onChange={handleDateChange}
+            dateFormat="dd/MM/yyyy"
+            placeholderText="Due Date"
+            showYearDropdown
+            scrollableYearDropdown
+            yearDropdownItemNumber={15}
+            className="form-control"
+            fullWidth
+          />
           {/* <DatePicker
             selected={bucketData.dueDate}
-          //  onChange={handleDateChange}
+            onChange={handleDateChange}
             dateFormat="dd/MM/yyyy"
             placeholderText="Due Date"
             showYearDropdown
@@ -151,6 +161,7 @@ const BucketUpdateForm = () => {
             className="form-control"
             fullWidth
           /> */}
+
         </div>
         <div className="form-field">
           <TextField
@@ -166,6 +177,7 @@ const BucketUpdateForm = () => {
           Update
         </Button>
       </form>
+      {/* {console.log(parseInt(bucketData.dueDate) , "loge bucket")} */}
     </div>
   );
 };
