@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../../utils/mutations';
 
 import Auth from '../../utils/auth';
 
 const Login = (props) => {
+  const navigate = useNavigate();
   const [formState, setFormState] = useState({ email: '', password: '' });
   const [login, { error, data }] = useMutation(LOGIN_USER);
 
@@ -30,6 +31,10 @@ const Login = (props) => {
 
       Auth.login(data.signIn.token);
       console.log(data.signIn.token);
+
+      if (data) {
+        navigate('/profile'); // Redirect to the profile page
+      }
     } catch (e) {
       console.error(e);
     }
@@ -44,9 +49,11 @@ const Login = (props) => {
   return (
     <main className="flex-row justify-center mb-4">
       <div className="col-12 col-lg-10">
-        <div className="card">
-          <h4 className="card-header bg-dark text-light p-2">Login</h4>
-          <div className="card-body">
+        {/* Changing the background color of the body under header */}
+        <div className="card" style={{backgroundColor:"#706281"}}>
+          {/* Changing the background color of the Login header */}
+          <h4 className="card-header text-light p-2" style={{backgroundColor:"#382D45"}}>Login</h4>
+          <div className="card-body" >
             {data ? (
               <p>
                 Success! You may now head{' '}
@@ -72,7 +79,8 @@ const Login = (props) => {
                 />
                 <button
                   className="btn btn-block btn-primary"
-                  style={{ cursor: 'pointer' }}
+                  // Changing the background color of the button
+                  style={{ cursor: 'pointer',  backgroundColor:"#000053"}}
                   type="submit"
                 >
                   Submit

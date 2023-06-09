@@ -39,30 +39,16 @@ export const ADD_BUCKET = gql`
   }
 `;
 
-// delete bucket. need bucket ID // status 200 w deleteBucket: null
-// issue: need to add a function for delete bucket in typeDef under Server files
-
+// Delete bucket by Id - only logged in users are authorized to delete their id
 export const DELETE_BUCKET = gql`
 mutation deleteBucket($deleteBucketId: ID!) {
   deleteBucket(id: $deleteBucketId) {
     id
-    title
-    description
-    status
-    dueDate
-    priority
-    isOverDue
-    notes {
-      id
-      content
-      createdAt
     }
-  }
 }
 `;
 
-// add note to a bucket. need bucket id. status 200
-
+// Adding not to a bucket which blongs to loggedIn user
 export const ADD_NOTE_TO_BUCKET = gql`
 mutation addNoteToBucket($bucketId: ID!, $content: String!) {
   addNoteToBucket(bucketId: $bucketId, content: $content) {
@@ -84,16 +70,18 @@ mutation DeleteNoteFromBucket($bucketId: ID!, $noteId: ID!) {
   }
 }
 `;
-
-// update bucket but only allows description, due date, title // need authorization token
-// issue: how to input variables for title, description and duedate?
+//Update bucket by Id
 export const UPDATE_BUCKET = gql`
-mutation UpdateBucket($updateBucketId: ID!) {
-  updateBucket(id: $updateBucketId) {
+mutation UpdateBucket($updateBucketId: ID!, $description: String, $status: String, $dueDate: String, $priority: Int, $title: String) {
+  updateBucket(id: $updateBucketId, description: $description, status: $status, dueDate: $dueDate, priority: $priority, title: $title) {
+    id
     title
     description
+    status
     dueDate
+    priority
+    createdAt
+    isOverDue
   }
 }
 `;
-

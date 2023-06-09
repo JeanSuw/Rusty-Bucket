@@ -14,6 +14,31 @@ import Profile from './pages/Profile';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import BucketForm from './components/BucketForm';
+import BucketUpdateForm from './components/BucketUpdateForm';
+
+import CssBaseline from "@material-ui/core/CssBaseline";
+import { MuiThemeProvider, createTheme } from "@material-ui/core/styles";
+
+// wbg means website's background color
+const wbgColor = createTheme({
+  palette: {
+    background: {
+      // you can change the color here
+      default: "#EDE1D4"
+    }
+  }
+});
+
+// We don't need this code. You can change it in Header file
+// const navBarColor = createTheme({
+//   palette: {
+//     primary: {
+//       // you can change the color here
+//       //main: "#ffd740"
+//       main: "#E6E6FA"
+//     }
+//   }
+// });
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
@@ -42,40 +67,52 @@ const client = new ApolloClient({
 function App() {
   return (
     <ApolloProvider client={client}>
-      <Router>
-        <div className="flex-column justify-flex-start min-100-vh">
-          <Header />
-          <div className="container">
-            <Routes>
-              <Route 
-                path="/"
-                element={<Home />}
-              />
-               <Route 
-                path="/signup-login" 
-                element={<SignUpLogInPage />}
-              />
-              <Route 
-                path="/profile" 
-                element={<Profile />}
-              />
+      {/* navbar color */}
+      {/* <ThemeProvider theme={navBarColor}> */}
+      {/* website's bg color */}
+      <MuiThemeProvider theme={wbgColor} >
+        <CssBaseline/>
         
-               <Route 
-                path="/addBucket" 
-                element={<BucketForm />}
-              />
-              <Route 
-                path="/profiles/:username" 
-                element={<Profile />}
-              />
-               <Route path="/singleBucket/:id" 
-               element={<SingleBucket />}
-                />
-            </Routes>
-          </div>
-          <Footer />
-        </div>
-      </Router>
+          <Router>
+            <div className="flex-column justify-flex-start min-100-vh">
+              <Header />
+              <div className="container" style={{ marginTop: '20px' }} >
+                <Routes>
+                  <Route 
+                    path="/"
+                    element={<Home />}
+                  />
+                  <Route 
+                    path="/signup-login" 
+                    element={<SignUpLogInPage />}
+                  />
+                  <Route 
+                    path="/profile" 
+                    element={<Profile />}
+                  />
+            
+                  <Route 
+                    path="/addBucket" 
+                    element={<BucketForm />}
+                  />
+                  <Route 
+                    path="/profiles/:username" 
+                    element={<Profile />}
+                  />
+                  <Route path="/singleBucket/:id" 
+                  element={<SingleBucket />}
+                    />
+                     <Route path="/bucket/update/:id" 
+                  element={<BucketUpdateForm />}
+                    />
+                </Routes>
+              </div>
+              <Footer />
+            </div>
+          </Router>
+        
+      </MuiThemeProvider>
+      {/* </ThemeProvider> */}
     </ApolloProvider>
   );
 }

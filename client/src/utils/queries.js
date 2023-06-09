@@ -50,15 +50,18 @@ query getBuckets {
 export const QUERY_SINGLE_BUCKET = gql`
 query getSingleBucket ($bucketId: ID!) {
     bucket(id: $bucketId) {
+      id
+      title
       description
+      createdAt
       dueDate
       priority
       status
-      title
-      id
       isOverDue
       notes {
         id
+        content
+        createdAt
       }
     }
   }
