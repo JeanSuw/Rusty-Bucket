@@ -42,7 +42,7 @@ export const ADD_BUCKET = gql`
 // Delete bucket by Id - only logged in users are authorized to delete their id
 export const DELETE_BUCKET = gql`
 mutation deleteBucket($deleteBucketId: ID!) {
-  eleteBucket(id: $deleteBucketId) {
+  deleteBucket(id: $deleteBucketId) {
     id
     }
 }
