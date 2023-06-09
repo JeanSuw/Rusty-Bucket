@@ -14,8 +14,6 @@
 ## [Usage](#table-of-content)
 
 ## [Authors](#table-of-content)
-
-## [Authors](#table-of-content)
 | Front-end contribution  | Back-end contribution |
 | ------------- | ------------- |
 | Erin Wallace  | Getnet Ali  |

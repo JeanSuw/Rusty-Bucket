@@ -16,24 +16,28 @@ import Footer from './components/Footer';
 import BucketForm from './components/BucketForm';
 
 import CssBaseline from "@material-ui/core/CssBaseline";
-import { MuiThemeProvider, ThemeProvider, createTheme } from "@material-ui/core/styles";
+import { MuiThemeProvider, createTheme } from "@material-ui/core/styles";
 
-const themeDefault= createTheme({
+// wbg means website's background color
+const wbgColor = createTheme({
   palette: {
     background: {
+      // you can change the color here
       default: "#EDE1D4"
     }
   }
 });
 
-
-const createMuiTheme = createTheme({
-  palette: {
-    primary: {
-      main: "#ffd740"
-    }
-  }
-});
+// We don't need this code. You can change it in Header file
+// const navBarColor = createTheme({
+//   palette: {
+//     primary: {
+//       // you can change the color here
+//       //main: "#ffd740"
+//       main: "#E6E6FA"
+//     }
+//   }
+// });
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
@@ -62,8 +66,10 @@ const client = new ApolloClient({
 function App() {
   return (
     <ApolloProvider client={client}>
-      <ThemeProvider theme={createMuiTheme}>
-      <MuiThemeProvider theme={themeDefault} >
+      {/* navbar color */}
+      {/* <ThemeProvider theme={navBarColor}> */}
+      {/* website's bg color */}
+      <MuiThemeProvider theme={wbgColor} >
         <CssBaseline/>
         
           <Router>
@@ -102,7 +108,7 @@ function App() {
           </Router>
         
       </MuiThemeProvider>
-      </ThemeProvider>
+      {/* </ThemeProvider> */}
     </ApolloProvider>
   );
 }
