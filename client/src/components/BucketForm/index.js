@@ -9,6 +9,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { useNavigate } from 'react-router-dom';
 import { InputLabel, FormControl, Select, MenuItem } from '@mui/material';
 
+//import { css } from '@emotion/css'
 
 const BucketForm = () => {
   const [bucketData, setBucketData] = useState({
@@ -65,7 +66,9 @@ const BucketForm = () => {
   };
 
   return (
-    <div className="bucket-form-container">
+    // #A599B2 or #706281
+    // Color of the forms for addBucket Page can be change in line 70
+    <div className="bucket-form-container" style={{backgroundColor:"#706281", color:"white" }}>
       <Typography variant="h4" align="center" gutterBottom>
         Create New Bucket
       </Typography>
@@ -133,7 +136,8 @@ const BucketForm = () => {
             fullWidth
           />
         </div>
-        <Button type="submit" variant="contained" color="primary">
+        {/* Color of the Submit Button for Create New Bucket */}
+        <Button type="submit" variant="contained" style={{backgroundColor:"#000053", color:"white" }}>
           Submit
         </Button>
       </form>
