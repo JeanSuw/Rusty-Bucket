@@ -9,8 +9,24 @@
   margin-bottom: 20px;
 }
 
+.custom-button {
+  width: 100%;
+  background-color: goldenrod;
+  color: white;
+  padding: 12px 24px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s;
+}
 
-
+.custom-button:hover {
+  background-color: darkgoldenrod;
+}
 
 
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */

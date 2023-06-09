@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 import * as React from 'react';
 //import { css } from '@emotion/css';
@@ -136,6 +137,16 @@ export default function Home (){
     </Grid>
 
    
+=======
+import React from 'react';
+
+const Home = () => {
+  return (
+    <div>
+      <h1>Coming Soon</h1>
+      <p>We are working on something exciting. Stay tuned!</p>
+    </div>
+>>>>>>> c62400eabc9eb875bd0dda8b412b28fa19cd360f
   );
 }
 
