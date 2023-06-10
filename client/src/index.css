@@ -31,6 +31,15 @@
   background-color: darkgoldenrod;
 }
 
+  .grid-header {
+    background-color: #f5f5f5;
+    font-weight: bold;
+  }
+  .grid-content {
+   background-color: white;
+  }
+
+
 .round-corner-form {
   border-radius: 25px;
 }
@@ -38,6 +47,7 @@
 .round-corner-heading{
   border-radius: 25px 25px 0 0;
 }
+
 
 
 
