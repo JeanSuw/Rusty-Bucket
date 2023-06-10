@@ -66,14 +66,13 @@ const Profile = () => {
       <Typography variant="h4" align="center" gutterBottom>
         Bucket List
       </Typography>
-      {/* Change color for the button "CREATE NEW BUCKET" here in line 70 in style */}
+      {/* Change color for the button "Create New Bucket"*/}
       <button className="custom-button" variant="contained" fullWidth onClick={handleCreateBucket}>
         Create New Bucket
       </button>
-      {/* Change color of the table*/}
       <div style={{ height: 400, width: '100%'}}>
-        {/* Change the color of the text to white */}
-        <DataGrid rows={rows} columns={columns} style={{color: "black"}} />
+        {/* Change the color of the text to black and move the table downward */}
+        <DataGrid className='my-4' rows={rows} columns={columns} style={{border: '2px solid #654321', color: "black", borderRadius: 25}} />
       </div>
       
     </div>
