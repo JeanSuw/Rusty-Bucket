@@ -3,8 +3,7 @@
 import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useQuery, useMutation, gql } from '@apollo/client';
-// import { Card, CardContent, Typography, Button, CardHeader, TextField } from '@mui/material';
-import { Card, CardContent, Typography, Button, CardHeader, TextField, Grid, Autocomplete } from '@mui/material';
+import { Card, CardContent, Typography, Button, CardHeader, TextField, Grid} from '@mui/material';
 import { DataGrid } from '@mui/x-data-grid';
 import { QUERY_SINGLE_BUCKET } from '../utils/queries';
 import { DELETE_NOTE_FROM_BUCKET, DELETE_BUCKET, ADD_NOTE_TO_BUCKET } from '../utils/mutations';
