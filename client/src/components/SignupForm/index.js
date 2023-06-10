@@ -42,9 +42,9 @@ const Signup = () => {
     <main className="flex-row justify-center mb-4">
       <div className="col-12 col-lg-10">
         {/* Changing the background color of the body under header */}
-        <div className="card" style={{backgroundColor:"#706281"}}>
+        <div className="card">
           {/* Changing the background color of the Sign in header */}
-          <h4 className="card-header text-light p-2" style={{backgroundColor:"#382D45"}}>Sign Up</h4>
+          <h4 className="card-header p-2" style={{backgroundColor:"#654321"}}>Sign Up</h4>
           <div className="card-body">
             {data ? (
               <p>
@@ -78,9 +78,9 @@ const Signup = () => {
                   onChange={handleChange}
                 />
                 <button
-                  className="btn btn-block btn-primary"
+                  className="custom-button"
                   // Changing the background color of the button
-                  style={{ cursor: 'pointer', backgroundColor:"#000053"}}
+                  style={{ cursor: 'pointer'}}
                   type="submit"
 
                 >
