@@ -137,7 +137,7 @@ const SingleBucket = () => {
 
 
   const rows = bucket.notes.map((note) => ({
-    id: note.id,
+     id: note.id,
     content: note.content,
     createdAt: formatDate(note.createdAt),
   }));
@@ -211,7 +211,7 @@ const SingleBucket = () => {
             </CardContent>
           </Card>
 
-          <div style={{ height: '300px', width: '100%', marginBottom: '20px', overflow: 'auto', border: '1px solid #654321' }}>
+          <div style={{ height: '200px', width: '100%', marginBottom: '20px', overflow: 'auto', border: '1px solid #654321' }}>
             <DataGrid rows={rows} columns={columns} autoHeight sx={{ backgroundColor: 'rgba(245, 245, 245, 0.5)' }} />
           </div>
         </CardContent>
