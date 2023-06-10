@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { useMutation, useQuery } from '@apollo/client';
 import { UPDATE_BUCKET } from '../../utils/mutations';
 import { QUERY_SINGLE_BUCKET } from '../../utils/queries';
-import { TextField, Button, Typography } from '@mui/material';
+import { TextField, Typography } from '@mui/material';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -91,8 +91,9 @@ const BucketUpdateForm = () => {
   }
   // console.log(bucketData)
   return (
+
     <div className="bucket-form-container">
-      <Typography variant="h4" align="center" gutterBottom>
+      <Typography className='round-corner-heading' variant="h4" align="center"  style={{backgroundColor: "#654321", color:"white"}} gutterBottom>
         Update Bucket
       </Typography>
       <form onSubmit={handleFormSubmit}>
@@ -147,7 +148,7 @@ const BucketUpdateForm = () => {
             fullWidth
           />
         </div>
-        <div className="form-field">
+        <div className="form-field" >
           <TextField
             label="Priority"
             id="priority"
@@ -157,9 +158,9 @@ const BucketUpdateForm = () => {
             fullWidth
           />
         </div>
-        <Button type="submit" variant="contained" color="primary">
+        <button className="custom-button" style={{width: "20%"}} type="submit" variant="contained" >
           Update
-        </Button>
+        </button>
       </form>
       {/* {console.log(parseInt(bucketData.dueDate) , "loge bucket")} */}
     </div>

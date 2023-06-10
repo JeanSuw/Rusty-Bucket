@@ -9,8 +9,9 @@ const Footer = () => {
       <div className="container text-center mb-5">
         {location.pathname !== '/' && (
           <button
-            className="btn mb-3 text-light"
-            style={{backgroundColor: "#654321"}}
+            className="btn mb-3 text-light "
+            // Changing color of the button and make the corners rounder
+            style={{backgroundColor: "#654321", borderRadius: 25}}
             onClick={() => navigate(-1)}
           >
             &larr; Go Back

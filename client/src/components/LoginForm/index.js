@@ -50,9 +50,9 @@ const Login = (props) => {
     <main className="flex-row justify-center mb-4">
       <div className="col-12 col-lg-10">
         {/* Changing the background color of the body under header */}
-        <div className="card" >
+        <div className="card round-corner-form" >
           {/* Changing the background color of the Login header */}
-          <h4 className="card-header p-2" style={{backgroundColor:"#654321"}}>Login</h4>
+          <h4 className="card-header p-2 round-corner-heading" style={{backgroundColor:"#654321"}}>Login</h4>
           <div className="card-body" >
             {data ? (
               <p>
