@@ -49,9 +49,11 @@ const Login = (props) => {
   return (
     <main className="flex-row justify-center mb-4">
       <div className="col-12 col-lg-10">
-        <div className="card">
-          <h4 className="card-header bg-dark text-light p-2">Login</h4>
-          <div className="card-body">
+        {/* Changing the background color of the body under header */}
+        <div className="card" >
+          {/* Changing the background color of the Login header */}
+          <h4 className="card-header p-2" style={{backgroundColor:"#654321"}}>Login</h4>
+          <div className="card-body" >
             {data ? (
               <p>
                 Success! You may now head{' '}
@@ -76,8 +78,9 @@ const Login = (props) => {
                   onChange={handleChange}
                 />
                 <button
-                  className="btn btn-block btn-primary"
-                  style={{ cursor: 'pointer' }}
+                  className="custom-button"
+                  // Changing the background color of the button
+                  style={{ cursor: 'pointer'}}
                   type="submit"
                 >
                   Submit

@@ -1,4 +1,3 @@
-
 // export default Profile;
 import React from 'react';
 import { useNavigate, Link } from 'react-router-dom';
@@ -6,31 +5,9 @@ import { useQuery } from '@apollo/client';
 import { DataGrid } from '@mui/x-data-grid';
 import { QUERY_CURRENTUSER } from '../utils/queries';
 import { formatDate } from '../utils/formatDate';
-import { Button, Typography } from '@mui/material';
+import {  Typography } from '@mui/material';
+// Button,
 import Auth from '../utils/auth';
-
-//import orange from '@material-ui/core/colors/orange';
-//import { css } from '@emotion/css'
-//const primary = orange[200];
-//import { ThemeProvider, createTheme } from "@material-ui/core/styles";
-//import { createTheme } from '@material-ui/core/styles';
-// const theme = createTheme({
-//   palette: {
-//     primary: {
-//       light: '#ffd740',
-//     },
-//   },
-// });
-// Button color : Gold
-// const createMuiTheme = () => {
-//   return createTheme({
-//     palette: {
-//       primary: {
-//         main: '#ffd740', 
-//       }
-//     }
-//   })
-// };
 
 const Profile = () => {
   const { loading, error, data } = useQuery(QUERY_CURRENTUSER);
@@ -84,16 +61,19 @@ const Profile = () => {
   };
 
   return (
-    <div>
+    <div  >
       
       <Typography variant="h4" align="center" gutterBottom>
         Bucket List
       </Typography>
-      <Button variant="contained" color="primary" fullWidth onClick={handleCreateBucket}>
+      {/* Change color for the button "CREATE NEW BUCKET" here in line 70 in style */}
+      <button className="custom-button" variant="contained" fullWidth onClick={handleCreateBucket}>
         Create New Bucket
-      </Button>
-      <div style={{ height: 400, width: '100%' }}>
-        <DataGrid rows={rows} columns={columns} />
+      </button>
+      {/* Change color of the table*/}
+      <div style={{ height: 400, width: '100%'}}>
+        {/* Change the color of the text to white */}
+        <DataGrid rows={rows} columns={columns} style={{color: "black"}} />
       </div>
       
     </div>

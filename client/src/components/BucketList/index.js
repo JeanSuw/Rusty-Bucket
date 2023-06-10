@@ -34,11 +34,13 @@ const BucketList = () => {
 
   return (
     <div>
-      <Typography variant="h6" align="center" gutterBottom>
+      <Typography variant="h6" align="center" style={{backgroundColor:"#654321", color: "white"}} gutterBottom>
         Top Ten Recent Buckets Add By Users
       </Typography>
+      {/* The table color */}
       <div style={{ height: 400, width: '100%' }}>
-        <DataGrid rows={buckets} columns={columns} pageSize={5} />
+        {/* The text color */}
+        <DataGrid rows={buckets} columns={columns} pageSize={5} style={{ color: "black"}}/>
       </div>
     </div>
   );

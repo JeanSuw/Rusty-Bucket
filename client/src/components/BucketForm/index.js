@@ -3,12 +3,13 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { ADD_BUCKET } from '../../utils/mutations';
-import { TextField, Button, Typography } from '@mui/material';
+import { TextField, Typography } from '@mui/material';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { useNavigate } from 'react-router-dom';
 import { InputLabel, FormControl, Select, MenuItem } from '@mui/material';
 
+//import { css } from '@emotion/css'
 
 const BucketForm = () => {
   const [bucketData, setBucketData] = useState({
@@ -65,8 +66,9 @@ const BucketForm = () => {
   };
 
   return (
-    <div className="bucket-form-container">
-      <Typography variant="h4" align="center" gutterBottom>
+    // Color of the forms for addBucket Page can be change in line 70
+    <div className="bucket-form-container" style={{ color:"black" }}>
+      <Typography variant="h4" align="center" style={{backgroundColor: "#654321", color:"white"}} gutterBottom>
         Create New Bucket
       </Typography>
       <form onSubmit={handleFormSubmit}>
@@ -133,9 +135,10 @@ const BucketForm = () => {
             fullWidth
           />
         </div>
-        <Button type="submit" variant="contained" color="primary">
+        {/* Color of the Submit Button for Create New Bucket */}
+        <button className="custom-button" type="submit" variant="contained" style={{ color:"white", width: "20rem"}}>
           Submit
-        </Button>
+        </button>
       </form>
     </div>
   );

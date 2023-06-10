@@ -89,10 +89,10 @@ const SingleBucket = () => {
 
   return (
     <div>
-      <Card sx={{ backgroundColor: 'transparent', border: '1px solid brown', boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)' }}>
-        <CardHeader sx={{ backgroundColor: 'goldenrod' }}
+      <Card sx={{ backgroundColor: 'transparent', border: '1px solid #ccc', boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)' }}>
+        <CardHeader sx={{ backgroundColor: '#654321' }}
           title={
-            <Typography variant="h5" component="div" sx={{ fontWeight: 'bold' }}>
+            <Typography variant="h5" component="div" sx={{ fontWeight: 'bold', color: "white" }}>
               Bucket Details
             </Typography>
           }

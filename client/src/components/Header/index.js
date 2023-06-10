@@ -14,6 +14,7 @@ const Header = () => {
   };
   return (
     <AppBar position="static">
+      {/* Color of the nav bar */}
       <Toolbar className={css`
       background-color: #654321;`
       }>
