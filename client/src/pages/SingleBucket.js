@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useQuery, useMutation, gql } from '@apollo/client';
-import { Card, CardContent, Typography, Button, CardHeader, TextField, Grid} from '@mui/material';
+import { Card, CardContent, Typography, Button, CardHeader, TextField, Grid } from '@mui/material';
 import { DataGrid } from '@mui/x-data-grid';
 import { QUERY_SINGLE_BUCKET } from '../utils/queries';
 import { DELETE_NOTE_FROM_BUCKET, DELETE_BUCKET, ADD_NOTE_TO_BUCKET } from '../utils/mutations';
@@ -34,7 +34,7 @@ const SingleBucket = () => {
             query: QUERY_SINGLE_BUCKET,
             variables: { bucketId: id },
           });
-  
+
           // Update the bucket's notes array with the new note data
           cache.writeQuery({
             query: QUERY_SINGLE_BUCKET,
@@ -48,14 +48,14 @@ const SingleBucket = () => {
           });
         },
       });
-  
+
       console.log('Added note:', data.addNoteToBucket);
       setNewNote('');
     } catch (error) {
       console.error('Error adding note:', error);
     }
   };
-  
+
   if (loading) {
     return <p>Loading...</p>;
   }
@@ -76,12 +76,12 @@ const SingleBucket = () => {
             query: QUERY_SINGLE_BUCKET,
             variables: { bucketId: id },
           });
-  
+
           // Remove the deleted note from the notes array
           const updatedNotes = cachedData.bucket.notes.filter(
             (note) => note.id !== noteId
           );
-  
+
           // Update the cache with the updated notes array
           cache.writeQuery({
             query: QUERY_SINGLE_BUCKET,
@@ -95,13 +95,13 @@ const SingleBucket = () => {
           });
         },
       });
-  
+
       console.log('Deleted note:', data.deleteNoteFromBucket);
     } catch (error) {
       console.error('Error deleting note:', error);
     }
   };
-  
+
   const handleDeleteBucket = async () => {
     try {
       const { data } = await deleteBucket({
@@ -137,51 +137,57 @@ const SingleBucket = () => {
 
 
   const rows = bucket.notes.map((note) => ({
-     id: note.id,
+    id: note.id,
     content: note.content,
     createdAt: formatDate(note.createdAt),
   }));
 
   return (
     <div>
-      <Card  sx={{ backgroundColor: 'transparent', border: '2px solid #654321', boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)', borderRadius: 8 }}>
+      <Card sx={{ backgroundColor: 'transparent', border: '2px solid #654321', boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)', borderRadius: 8 }}>
         <CardHeader className="round-corner-heading" sx={{ backgroundColor: '#654321' }}
           title={
             <Typography variant="h5" component="div" sx={{ fontWeight: 'bold', color: "white" }}>
-              Bucket Details
+              {bucket.title}
             </Typography>
           }
         />
         <CardContent>
-          <Typography variant="body1" color="text.secondary" sx={{ marginBottom: '5px' }}>
-            Title: <span>{bucket.title}</span>
-          </Typography>
-          <Typography variant="body1" color="text.secondary" sx={{ marginBottom: '5px' }}>
-            Description: {bucket.description}
-          </Typography>
-          <Typography variant="body1" color="text.secondary" sx={{ marginBottom: '5px' }}>
-            Status: {bucket.status}
-          </Typography>
-          <Typography variant="body1" color="text.secondary" sx={{ marginBottom: '5px' }}>
-            Due Date: {formatDate(bucket.dueDate)}
-          </Typography>
-          <Typography variant="body1" color="text.secondary" sx={{ marginBottom: '5px' }}>
-            Priority: {bucket.priority}
-          </Typography>
-          <Typography variant="body1" color="text.secondary" sx={{ marginBottom: '5px' }}>
-            Is Overdue: {bucket.isOverDue ? 'Yes' : 'No'}
-          </Typography>
-          <Typography variant="body1" color="text.secondary">
-            Created At: {formatDate(bucket.createdAt)}
-          </Typography>
-
+          <Grid container spacing={2} justifyContent="space-around">
+            <Grid item xs={12} md={6}>
+              <div>
+                <Typography variant="body1" color="text.secondary" sx={{ fontWeight: 'bold' }}>
+                  Description: {bucket.description}
+                </Typography>
+                <Typography variant="body1" color="text.secondary" sx={{ fontWeight: 'bold' }}>
+                  Status: {bucket.status}
+                </Typography>
+                <Typography variant="body1" color="text.secondary" sx={{ fontWeight: 'bold' }}>
+                  Due Date: {formatDate(bucket.dueDate)}
+                </Typography>
+              </div>
+            </Grid>
+            <Grid item xs={12} md={6}>
+              <div>
+                <Typography variant="body1" color="text.secondary" sx={{ fontWeight: 'bold' }}>
+                  Priority: {bucket.priority}
+                </Typography>
+                <Typography variant="body1" color="text.secondary" sx={{ fontWeight: 'bold' }}>
+                  Is Overdue: {bucket.isOverDue ? 'Yes' : 'No'}
+                </Typography>
+                <Typography variant="body1" color="text.secondary" sx={{ fontWeight: 'bold' }}>
+                  Created At: {formatDate(bucket.createdAt)}
+                </Typography>
+              </div>
+            </Grid>
+          </Grid>
           <Typography variant="h5" component="div" style={{ borderTop: '2px solid #654321' }}>
             Notes
           </Typography>
 
           <Card sx={{ backgroundColor: 'rgba(245, 245, 245, 0.5)', marginTop: '10px', marginBottom: '10px', border: '1px solid #654321' }}>
             <CardContent>
-              <Grid container spacing={2} alignItems="center">
+              <Grid container spacing={1} alignItems="center">
                 <Grid item xs={12}>
                   <TextField
                     label="New Note"
@@ -193,12 +199,12 @@ const SingleBucket = () => {
                   />
                 </Grid>
                 <Grid item xs={12}>
-                  <Grid container spacing={2} justifyContent="flex-end">
+                  <Grid container spacing={0.25} justifyContent="flex-end">
 
                     <Grid item>
                       <Button
                         variant="outlined"
-                        style={{ color: 'green', borderColor: 'green', marginBottom: '10px' }}
+                        style={{ color: 'green', borderColor: 'green' }}
                         onClick={handleAddNote}
                       >
                         Create New Note
@@ -210,9 +216,8 @@ const SingleBucket = () => {
               </Grid>
             </CardContent>
           </Card>
-
-          <div style={{ height: '200px', width: '100%', marginBottom: '20px', overflow: 'auto', border: '1px solid #654321' }}>
-            <DataGrid rows={rows} columns={columns} autoHeight sx={{ backgroundColor: 'rgba(245, 245, 245, 0.5)' }} />
+          <div style={{ height: 200, width: '100%', backgroundColor: 'rgba(245, 245, 245, 0.3)' }}>
+            <DataGrid rows={rows} columns={columns} pageSize={1} style={{ border: '2px solid #654321', color: "black", borderRadius: 25 }} />
           </div>
         </CardContent>
       </Card>
