@@ -33,7 +33,9 @@ const Login = (props) => {
       console.log(data.signIn.token);
 
       if (data) {
+        setTimeout(() => {
         navigate('/profile'); // Redirect to the profile page
+        }, 1000);
       }
     } catch (e) {
       console.error(e);
