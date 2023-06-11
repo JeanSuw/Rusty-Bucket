@@ -1,8 +1,8 @@
-
 // export default BucketForm;
 import React, { useState } from 'react';
-import { useMutation } from '@apollo/client';
+import { useMutation, useQuery } from '@apollo/client';
 import { ADD_BUCKET } from '../../utils/mutations';
+import { QUERY_CURRENTUSER } from '../../utils/queries';
 import { TextField, Typography } from '@mui/material';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -22,6 +22,7 @@ const BucketForm = () => {
 
   const [addBucket] = useMutation(ADD_BUCKET);
   const navigate = useNavigate();
+  const { refetch } = useQuery(QUERY_CURRENTUSER);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -30,40 +31,46 @@ const BucketForm = () => {
 
   const handleDateChange = (date) => {
     setBucketData({ ...bucketData, dueDate: date });
+    console.log(bucketData.dueDate)
   };
 
-  const handleFormSubmit = async (event) => {
-    event.preventDefault();
 
-    // Check if the due date is null or empty
-    if (!bucketData.dueDate) {
-      // Display validtion error
-      console.error('Due date is required');
-      return;
-    }
+const handleFormSubmit = async (event) => {
+  event.preventDefault();
 
-    try {
-      await addBucket({
-        variables: {
-          ...bucketData,
-          priority: parseInt(bucketData.priority) // Convert to integer
-        },
-      });
-      // Reset form data
-      setBucketData({
-        title: '',
-        description: '',
-        status: '',
-        dueDate: null,
-        priority: '',
-      });
-      // Redirect to profile page
-      navigate('/profile');
-      window.location.reload();
-    } catch (err) {
-      console.error(err);
-    }
-  };
+  // Check if the due date is null or empty
+  if (!bucketData.dueDate) {
+    // Display validation error
+    console.error('Due date is required');
+    return;
+  }
+
+  try {
+    await addBucket({
+      variables: {
+        ...bucketData,
+        priority: parseInt(bucketData.priority), // Convert to integer
+      },
+    });
+
+    // Reset form data
+    setBucketData({
+      title: '',
+      description: '',
+      status: '',
+      dueDate: null,
+      priority: '',
+    });
+
+    // Refetch the QUERY_CURRENTUSER query to update the data
+    refetch();
+
+    // Redirect to profile page
+    navigate('/profile');
+  } catch (err) {
+    console.error(err);
+  }
+};
 
   return (
     // Color of the forms for addBucket Page can be change in line 70

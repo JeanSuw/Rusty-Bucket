@@ -10,6 +10,7 @@ import { DELETE_NOTE_FROM_BUCKET, DELETE_BUCKET, ADD_NOTE_TO_BUCKET } from '../u
 import { formatDate } from '../utils/formatDate';
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
+import { QUERY_CURRENTUSER } from '../utils/queries';
 
 const SingleBucket = () => {
   const { id } = useParams();
@@ -102,19 +103,37 @@ const SingleBucket = () => {
     }
   };
 
-  const handleDeleteBucket = async () => {
-    try {
-      const { data } = await deleteBucket({
-        variables: { deleteBucketId: bucket.id },
-      });
-      console.log('Deleted bucket:', data.deleteBucket);
-      navigate('/profile');
-      window.location.reload();
-      
-    } catch (error) {
-      console.error('Error deleting bucket:', error);
-    }
-  };
+const handleDeleteBucket = async () => {
+  try {
+    await deleteBucket({
+      variables: { deleteBucketId: bucket.id },
+      update: (cache) => {
+        // Read the current user's data from the cache
+        const { currentUser } = cache.readQuery({ query: QUERY_CURRENTUSER });
+
+        // Remove the deleted bucket from the user's buckets array
+        const updatedBuckets = currentUser.buckets.filter(
+          (b) => b.id !== bucket.id
+        );
+
+        // Write the updated user data back to the cache
+        cache.writeQuery({
+          query: QUERY_CURRENTUSER,
+          data: {
+            currentUser: {
+              ...currentUser,
+              buckets: updatedBuckets,
+            },
+          },
+        });
+      },
+    });
+
+    navigate('/profile');
+  } catch (error) {
+    console.error('Error deleting bucket:', error);
+  }
+};
 
   const bucketId = bucket.id;
   const handleUpdateBucket = () => {
