@@ -2,7 +2,7 @@
 // export default SingleBucket;
 import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { useQuery, useMutation, gql } from '@apollo/client';
+import { useQuery, useMutation, gql} from '@apollo/client';
 import { Card, CardContent, Typography, Button, CardHeader, TextField, Grid } from '@mui/material';
 import { DataGrid } from '@mui/x-data-grid';
 import { QUERY_SINGLE_BUCKET } from '../utils/queries';
@@ -110,6 +110,7 @@ const SingleBucket = () => {
       console.log('Deleted bucket:', data.deleteBucket);
       navigate('/profile');
       window.location.reload();
+      
     } catch (error) {
       console.error('Error deleting bucket:', error);
     }

@@ -67,7 +67,7 @@ const BucketForm = () => {
 
   return (
     // Color of the forms for addBucket Page can be change in line 70
-    <div className="bucket-form-container" style={{ color:"black"}}>
+    <div className="bucket-form-container" style={{ backgroundColor: 'rgba(245, 245, 245, 0.5)', color:"black"}}>
       <Typography className='round-corner-heading' variant="h4" align="center" style={{backgroundColor: "#654321", color:"white"}} gutterBottom>
         Create New Bucket
       </Typography>

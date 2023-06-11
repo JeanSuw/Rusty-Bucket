@@ -34,12 +34,12 @@ const BucketList = () => {
 
   return (
     <div >
-      <Typography className="round-corner-form" variant="h6" align="center" style={{ backgroundColor: "#654321", color: "white" }} gutterBottom>
+      <Typography className="round-corner-heading" variant="h6" align="center" style={{ backgroundColor: "#654321", color: "white" }} gutterBottom>
         Top Ten Recent Buckets Add By Users
       </Typography>
 
       <div style={{ height: 400, width: '100%',backgroundColor: 'rgba(245, 245, 245, 0.3)'}}>
-        <DataGrid rows={buckets} columns={columns} pageSize={5} style={{border: '2px solid #654321', color: "black", borderRadius: 25}}/>
+        <DataGrid className="round-corner-heading" rows={buckets} columns={columns} pageSize={5} style={{border: '2px solid #654321', color: "black", borderBottomRightRadius: 25 , borderBottomLeftRadius: 25}}/>
       </div>
      
     </div>
