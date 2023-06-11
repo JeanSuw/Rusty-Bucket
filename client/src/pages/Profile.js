@@ -5,7 +5,7 @@ import { useQuery } from '@apollo/client';
 import { DataGrid } from '@mui/x-data-grid';
 import { QUERY_CURRENTUSER } from '../utils/queries';
 import { formatDate } from '../utils/formatDate';
-import { Typography, Button } from '@mui/material';
+import { Typography, Button,LinearProgress} from '@mui/material';
 import Auth from '../utils/auth';
 
 const Profile = () => {
@@ -13,9 +13,12 @@ const Profile = () => {
   const navigate = useNavigate();
 
   if (loading) {
-    return <p>Loading...</p>;
+    return (
+      <div>
+        <LinearProgress sx={{ height: 50, backgroundColor: 'gold', '& .MuiLinearProgress-bar': { backgroundColor: '#654321' } }} /> 
+      </div>
+    );
   }
-
   if (error) {
     return <p>Error: {error.message}</p>;
   }
@@ -74,7 +77,7 @@ const Profile = () => {
       <div
         style={{
           backgroundColor: 'rgba(245, 245, 245, 0.3)',
-          height: 400,
+          height: 600,
           width: '100%',
           marginTop: '20px',
           border: '2px solid #654321',
