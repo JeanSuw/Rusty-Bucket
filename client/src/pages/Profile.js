@@ -77,7 +77,7 @@ const Profile = () => {
       <div
         style={{
           backgroundColor: 'rgba(245, 245, 245, 0.3)',
-          height: 600,
+          height: 400,
           width: '100%',
           marginTop: '20px',
           border: '2px solid #654321',
