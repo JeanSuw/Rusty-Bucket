@@ -31,6 +31,7 @@ const BucketForm = () => {
 
   const handleDateChange = (date) => {
     setBucketData({ ...bucketData, dueDate: date });
+    console.log(bucketData.dueDate)
   };
 
 

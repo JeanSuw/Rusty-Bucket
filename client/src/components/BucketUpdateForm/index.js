@@ -1,5 +1,3 @@
-
-// export default BucketUpdateForm;
 import React, { useState, useEffect } from 'react';
 import { useMutation, useQuery } from '@apollo/client';
 import { UPDATE_BUCKET } from '../../utils/mutations';
@@ -9,6 +7,7 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { useNavigate, useParams } from 'react-router-dom';
 import { InputLabel, FormControl, Select, MenuItem } from '@mui/material';
+import { formatUnixTime } from '../../utils/formatUnixTime';
 
 const BucketUpdateForm = () => {
   const { id } = useParams();
@@ -29,7 +28,7 @@ const BucketUpdateForm = () => {
   useEffect(() => {
     if (data) {
       const { title, description, status, dueDate, priority } = data.bucket;
-      console.log(dueDate, "due")
+      console.log(dueDate, "dueDate on use effect")
       setBucketData({
         title,
         description,
@@ -37,6 +36,7 @@ const BucketUpdateForm = () => {
         dueDate,
         priority,
       });
+      console.log(parseInt(dueDate), "dunate converted")
     }
   }, [data]);
 
@@ -50,13 +50,18 @@ const BucketUpdateForm = () => {
     // Create a new Date object with the provided date string
     var dateObj = new Date(date);
     // Get the Unix timestamp by dividing the milliseconds by 1000 and rounding it off
-    var unixTimestamp = Math.round(dateObj.getTime() / 1000);
+    var unixTimestamp = Math.round(dateObj.getTime());
     // Display the Unix timestamp
     console.log(unixTimestamp, "unix");
+    console.log(formatUnixTime(date),"formated form date picker")
     // Delay the execution of the last two lines of code by 1 second
-      setBucketData({ ...bucketData, dueDate: dateObj });
-     console.log(parseInt(bucketData.dueDate))
+      setBucketData({ ...bucketData, dueDate:unixTimestamp});
+     console.log(parseInt(bucketData.dueDate), "on handleDate change to int")
+     console.log(bucketData.dueDate, "unix 2 after moved")
+
+
   };
+
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -72,9 +77,11 @@ const BucketUpdateForm = () => {
           updateBucketId: id,
           ...bucketData,
           priority: parseInt(bucketData.priority),
+          dueDate:bucketData.dueDate.toString(),
         },
+    
       });
-
+        console.log(bucketData.dueDate, "after submit")
       navigate(`/singleBucket/${data.updateBucket.id}`);
     } catch (err) {
       console.error(err);
@@ -135,8 +142,8 @@ const BucketUpdateForm = () => {
         </div>
         <div className="form-field">
           <DatePicker
-            // selected={parseInt(bucketData.dueDate)}
             selected={parseInt(bucketData.dueDate)}
+           // selected={bucketData.dueDate}
             onChange={handleDateChange}
             dateFormat="dd/MM/yyyy"
             placeholderText="Due Date"
