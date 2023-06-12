@@ -33,8 +33,8 @@ const Login = (props) => {
       console.log(data.signIn.token);
 
        if (data) {
+        window.location.reload();
        navigate('/profile'); // Redirect to the profile page
-       window.location.reload();
        }
     } catch (e) {
       console.error(e);
