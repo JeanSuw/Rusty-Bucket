@@ -35,7 +35,7 @@ const Signup = () => {
       Auth.login(data.addUser.token);
        if (data) {
        
-        navigate('/'); // Redirect to the profile page
+        //navigate('/'); // Redirect to the profile page
         setTimeout(() => {
           navigate('/profile');
         }, 500); 
