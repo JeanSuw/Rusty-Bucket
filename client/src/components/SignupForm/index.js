@@ -34,9 +34,13 @@ const Signup = () => {
 
       Auth.login(data.addUser.token);
        if (data) {
-        window.location.reload(true);
-        navigate('/profile'); // Redirect to the profile page
-  
+       
+        navigate('/'); // Redirect to the profile page
+        setTimeout(() => {
+          navigate('/profile');
+        }, 500); 
+
+        //window.location.reload(true);
        }
     } catch (e) {
       console.error(e);
