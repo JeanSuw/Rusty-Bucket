@@ -16,9 +16,9 @@ const Header = () => {
     <AppBar position="static">
       {/* Color of the nav bar */}
       <Toolbar className={css`
-      background-color: #C3996F;`
+      background-color: #654321;`
       }>
-        <Typography variant="h6" style={{ flexGrow: 1 }}>
+        <Typography variant="h6" style={{ flexGrow: 1 }} color ="#F9F5F1">
          Rusty Bucket
         </Typography>
         <Button component={Link} to="/" color="inherit">Home</Button>

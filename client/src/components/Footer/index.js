@@ -15,7 +15,7 @@ const Footer = () => {
             &larr; Go Back
           </button>
         )}
-        <h4>
+        <h4 style= {{color: "#654321"}}>
          Tracking Bucket List Made Easy!
         </h4>
       </div>

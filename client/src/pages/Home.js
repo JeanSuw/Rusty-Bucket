@@ -20,7 +20,7 @@ export default function Home (){
   return(
     <Grid container spacing={4}>
       <Grid item xs={12} sm={6} md={4}>
-        <Card sx={{ maxWidth: 345, backgroundColor: 'transparent' }}>
+        <Card sx={{ maxWidth: 345, backgroundColor: '#654321' }}>
         <CardActionArea>
           <CardMedia
             component="img"
@@ -28,17 +28,15 @@ export default function Home (){
             image={hotairballoon}
             alt="Hot air balloon" />
           <CardContent>
-            <Typography variant="h5" fontWeight="bold" component="div">
+            <Typography variant="h5" fontWeight="bold" component="div" color="#F9FdF1">
               Hot Air Balloon
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
             </Typography>
           </CardContent>
         </CardActionArea>
       </Card>
     </Grid>
     <Grid item xs={12} sm={6} md={4}>
-        <Card sx={{ maxWidth: 345, backgroundColor: 'transparent'}}>
+        <Card sx={{ maxWidth: 345, backgroundColor: '#654321'}}>
           <CardActionArea>
             <CardMedia
               component="img"
@@ -46,16 +44,14 @@ export default function Home (){
               image={northernlights}
               alt="Hot air balloon" />
             <CardContent>
-              <Typography variant="h5" fontWeight="bold" component="div">
+              <Typography variant="h5" fontWeight="bold" component="div" color="#F9F5F1">
                 See Northern Lights
-              </Typography>
-              <Typography variant="body2" color="text.secondary">
               </Typography>
             </CardContent>
           </CardActionArea>
         </Card>
       </Grid><Grid item xs={12} sm={6} md={4}>
-        <Card sx={{ maxWidth: 345, backgroundColor: 'transparent' }}>
+        <Card sx={{ maxWidth: 345, backgroundColor: '#654321' }}>
           <CardActionArea>
             <CardMedia
               component="img"
@@ -63,17 +59,15 @@ export default function Home (){
               image={Egypt}
               alt="pyramid" />
             <CardContent>
-              <Typography variant="h5" fontWeight="bold" component="div">
+              <Typography variant="h5" fontWeight="bold" component="div" color="#F9F5F1">
                 Go to Egypt
-              </Typography>
-              <Typography variant="body2" color="text.secondary">
               </Typography>
             </CardContent>
           </CardActionArea>
         </Card>
       </Grid>
       <Grid item xs={12} sm={6} md={4}>
-        <Card sx={{ maxWidth: 345, backgroundColor: 'transparent' }}>
+        <Card sx={{ maxWidth: 345, backgroundColor: '#654321' }}>
           <CardActionArea>
             <CardMedia
               component="img"
@@ -81,17 +75,15 @@ export default function Home (){
               image={scubadiving}
               alt="pyramid" />
             <CardContent>
-              <Typography variant="h5" fontWeight="bold" component="div">
+              <Typography variant="h5" fontWeight="bold" component="div" color="#F9F5F1">
                 Learn to Scuba Dive
-              </Typography>
-              <Typography variant="body2" color="text.secondary">
               </Typography>
             </CardContent>
           </CardActionArea>
         </Card>
       </Grid>
       <Grid item xs={12} sm={6} md={4}>
-        <Card sx={{ maxWidth: 345, backgroundColor: 'transparent' }}>
+        <Card sx={{ maxWidth: 345, backgroundColor: '#654321' }}>
           <CardActionArea>
             <CardMedia
               component="img"
@@ -99,17 +91,15 @@ export default function Home (){
               image={skydiving}
               alt="pyramid" />
             <CardContent>
-              <Typography variant="h5" fontWeight="bold" component="div">
+              <Typography variant="h5" fontWeight="bold" component="div" color ="#F9F5F1">
                 Go Skydiving
-              </Typography>
-              <Typography variant="body2" color="text.secondary">
               </Typography>
             </CardContent>
           </CardActionArea>
         </Card>
       </Grid>
       <Grid item xs={12} sm={6} md={4}>
-        <Card sx={{ maxWidth: 345, backgroundColor: 'transparent' }}>
+        <Card sx={{ maxWidth: 345, backgroundColor: "#654321" }}>
           <CardActionArea>
             <CardMedia
               component="img"
@@ -117,10 +107,8 @@ export default function Home (){
               image={marathon}
               alt="marathon" />
             <CardContent>
-              <Typography variant="h5" fontWeight="bold" component="div">
+              <Typography variant="h5" fontWeight="bold" component="div" color= "#F9F5F1">
                 Run a Marathon
-              </Typography>
-              <Typography variant="body2" color="text.secondary">
               </Typography>
             </CardContent>
           </CardActionArea>

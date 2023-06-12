@@ -62,17 +62,17 @@ const Profile = () => {
   return (
     <div  >
       
-      <Typography variant="h4" align="center" gutterBottom>
+      <Typography variant="h4" align="center" color= "#654321"  fontWeight= "bold" gutterBottom>
         Bucket List
       </Typography>
       {/* Change color for the button "CREATE NEW BUCKET" here in line 70 in style */}
-      <Button variant="contained" style={{backgroundColor: "#382D45"}} fullWidth onClick={handleCreateBucket}>
+      <Button variant="contained" style={{backgroundColor: "#654321"}} fullWidth onClick={handleCreateBucket}>
         Create New Bucket
       </Button>
       {/* Change color of the table*/}
-      <div style={{ height: 400, width: '100%', backgroundColor: "#706281", color: "white"}}>
+      <div style={{ height: 400, width: '100%', backgroundColor: "#87705A", color: "F9F5F1"}}>
         {/* Change the color of the text to white */}
-        <DataGrid rows={rows} columns={columns} style={{color: "white"}} />
+        <DataGrid rows={rows} columns={columns} style={{color: "#F9F5F1"}} />
       </div>
       
     </div>
