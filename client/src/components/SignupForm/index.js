@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-
+import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { ADD_USER } from '../../utils/mutations';
 
 import Auth from '../../utils/auth';
 
 const Signup = () => {
+  const navigate = useNavigate();
   const [formState, setFormState] = useState({
     username: '',
     email: '',
@@ -33,6 +33,9 @@ const Signup = () => {
       });
 
       Auth.login(data.addUser.token);
+      // if (data) {
+        navigate('/profile'); // Redirect to the profile page
+      // }
     } catch (e) {
       console.error(e);
     }
@@ -44,50 +47,45 @@ const Signup = () => {
         {/* Changing the background color of the body under header */}
         <div className="card round-corner-form">
           {/* Changing the background color of the Sign in header */}
-          <h4 className="card-header p-2 round-corner-heading" style={{backgroundColor:"#654321"}}>Sign Up</h4>
+          <h4 className="card-header p-2 round-corner-heading" style={{ backgroundColor: "#654321" }}>Sign Up</h4>
           <div className="card-body">
-            {data ? (
-              <p>
-                Success! You may now head{' '}
-                <Link to="/">back to the homepage.</Link>
-              </p>
-            ) : (
-              <form onSubmit={handleFormSubmit}>
-                <input
-                  className="form-input"
-                  placeholder="Your username"
-                  name="username"
-                  type="text"
-                  value={formState.name}
-                  onChange={handleChange}
-                />
-                <input
-                  className="form-input"
-                  placeholder="Your email"
-                  name="email"
-                  type="email"
-                  value={formState.email}
-                  onChange={handleChange}
-                />
-                <input
-                  className="form-input"
-                  placeholder="******"
-                  name="password"
-                  type="password"
-                  value={formState.password}
-                  onChange={handleChange}
-                />
-                <button
-                  className="custom-button"
-                  // Changing the background color of the button
-                  style={{ cursor: 'pointer'}}
-                  type="submit"
 
-                >
-                  Submit
-                </button>
-              </form>
-            )}
+            <form onSubmit={handleFormSubmit}>
+              <input
+                className="form-input"
+                placeholder="Your username"
+                name="username"
+                type="text"
+                value={formState.name}
+                onChange={handleChange}
+              />
+              <input
+                className="form-input"
+                placeholder="Your email"
+                name="email"
+                type="email"
+                value={formState.email}
+                onChange={handleChange}
+              />
+              <input
+                className="form-input"
+                placeholder="******"
+                name="password"
+                type="password"
+                value={formState.password}
+                onChange={handleChange}
+              />
+              <button
+                className="custom-button"
+                // Changing the background color of the button
+                style={{ cursor: 'pointer' }}
+                type="submit"
+
+              >
+                Submit
+              </button>
+            </form>
+
 
             {error && (
               <div className="my-3 p-3 bg-danger text-white">
