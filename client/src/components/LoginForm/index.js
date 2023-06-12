@@ -32,9 +32,10 @@ const Login = (props) => {
       Auth.login(data.signIn.token);
       console.log(data.signIn.token);
 
-      // if (data) {
+       if (data) {
        navigate('/profile'); // Redirect to the profile page
-      // }
+       window.location.reload();
+       }
     } catch (e) {
       console.error(e);
     }
