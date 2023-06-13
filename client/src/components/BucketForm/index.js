@@ -143,7 +143,7 @@ const handleFormSubmit = async (event) => {
           />
         </div>
         {/* Color of the Submit Button for Create New Bucket */}
-        <button className="custom-button" type="submit" variant="contained" style={{ color:"white", width: "20rem"}}>
+        <button className="custom-button" type="submit" variant="contained" style={{ color:"white", width: "100%"}}>
           Submit
         </button>
       </form>

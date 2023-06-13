@@ -164,7 +164,7 @@ const BucketUpdateForm = () => {
             fullWidth
           />
         </div>
-        <button className="custom-button" style={{width: "20%"}} type="submit" variant="contained" >
+        <button className="custom-button" style={{width: "100%"}} type="submit" variant="contained" >
           Update
         </button>
       </form>
