@@ -53,6 +53,7 @@ Here is a table of content for the Rusty Bucket pages. You can click any one of 
 
 When you click on the link of the website, you are greeted with pictures. They are suggestions for you to add in your new bucket list. You are welcome to click any pictures. It will give you many possibilities of what do you want to do.
 
+<img src="./img/HomePage.png" alt="app-screen" width="600"/>
 
 ### [Login/Signup](#table-of-content-for-rusty-bucket-pages)
 But before adding anything, you must sign in. Enter your Username, email and a password on your right. Once you are done, you can revisit the website by login in with your email and password. <mark>***Please remember your password because we have not added features where you can change your password if you forget one.***<mark>
