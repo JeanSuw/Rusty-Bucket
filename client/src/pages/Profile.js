@@ -70,7 +70,7 @@ const Profile = () => {
         className="custom-button"
         variant="contained"
         onClick={handleCreateBucket}
-        style={{ backgroundColor: '#654321', color: 'white' }}
+        style={{ backgroundColor: '#654321', color: 'white', borderRadius: 25 }}
       >
         Create New Bucket
       </Button>
