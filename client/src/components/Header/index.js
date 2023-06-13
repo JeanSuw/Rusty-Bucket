@@ -1,14 +1,15 @@
 
-// export default Header;
 import React, { useState } from 'react';
-import { AppBar,Toolbar,Typography,Button,IconButton,Drawer, List,ListItem,ListItemText} from '@material-ui/core';
-import { Link } from 'react-router-dom';
+import { AppBar, Toolbar, Typography, Button, IconButton, Drawer, List, ListItem, ListItemText } from '@material-ui/core';
+import { Link, useLocation } from 'react-router-dom';
 import { Menu as MenuIcon } from '@material-ui/icons';
 import Auth from '../../utils/auth';
 import { css } from '@emotion/css';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const location = useLocation();
+  const activePage = location.pathname;
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -35,7 +36,14 @@ const Header = () => {
             display: none;
           }
         `}>
-          <Button component={Link} to="/" color="inherit">
+          <Button
+            component={Link}
+            to="/"
+            color="inherit"
+            className={activePage === '/' ? css`
+              border: 1px solid white;
+            ` : ''}
+          >
             Home
           </Button>
           {Auth.loggedIn() && (
@@ -43,16 +51,33 @@ const Header = () => {
               component={Link}
               to="/profile"
               color="inherit"
+              className={activePage === '/profile' ? css`
+                border: 1px solid white;
+              ` : ''}
             >
               {Auth.getProfile().data.username}'s Profile
             </Button>
           )}
           {Auth.loggedIn() ? (
-            <Button component={Link} onClick={logout} color="inherit">
+            <Button
+              component={Link}
+              onClick={logout}
+              color="inherit"
+              className={activePage === '/logout' ? css`
+                border: 1px solid white;
+              ` : ''}
+            >
               Log Out
             </Button>
           ) : (
-            <Button component={Link} to="/signup-login" color="inherit">
+            <Button
+              component={Link}
+              to="/signup-login"
+              color="inherit"
+              className={activePage === '/signup-login' ? css`
+                border: 1px solid white;
+              ` : ''}
+            >
               Sign In / Sign Up
             </Button>
           )}
@@ -61,20 +86,47 @@ const Header = () => {
 
       <Drawer anchor="left" open={isMenuOpen} onClose={toggleMenu}>
         <List>
-          <ListItem button component={Link} to="/">
+          <ListItem
+            button
+            component={Link}
+            to="/"
+            className={activePage === '/' ? css`
+              border: 1px solid white;
+            ` : ''}
+          >
             <ListItemText primary="Home" />
           </ListItem>
           {Auth.loggedIn() && (
-            <ListItem button component={Link} to="/profile">
+            <ListItem
+              button
+              component={Link}
+              to="/profile"
+              className={activePage === '/profile' ? css`
+                border: 1px solid white;
+              ` : ''}
+            >
               <ListItemText primary={`${Auth.getProfile().data.username}'s Profile`} />
             </ListItem>
           )}
           {Auth.loggedIn() ? (
-            <ListItem button onClick={logout}>
+            <ListItem
+              button
+              onClick={logout}
+              className={activePage === '/logout' ? css`
+                border: 1px solid white;
+              ` : ''}
+            >
               <ListItemText primary="Log Out" />
             </ListItem>
           ) : (
-            <ListItem button component={Link} to="/signup-login">
+            <ListItem
+              button
+              component={Link}
+              to="/signup-login"
+              className={activePage === '/signup-login' ? css`
+                border: 1px solid white;
+              ` : ''}
+            >
               <ListItemText primary="Sign In / Sign Up" />
             </ListItem>
           )}
