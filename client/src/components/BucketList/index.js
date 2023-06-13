@@ -28,7 +28,7 @@ const BucketList = () => {
 
   const columns = [
     { field: 'title', headerName: 'Title', width: 150 },
-    { field: 'description', headerName: 'Description', width: 250 },
+    { field: 'description', headerName: 'Description', width: 500 },
     { field: 'createdAt', headerName: 'Created At', width: 150 },
   ];
 
