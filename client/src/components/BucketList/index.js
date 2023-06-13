@@ -33,15 +33,15 @@ const BucketList = () => {
   ];
 
   return (
-    <div style={{backgroundColor:"#000053"}}>
-      <Typography variant="h6" align="center" style={{backgroundColor:"#382D45", color: "white"}} gutterBottom>
+    <div >
+      <Typography className="round-corner-heading" variant="h6" align="center" style={{ backgroundColor: "#654321", color: "white" }} gutterBottom>
         Top Ten Recent Buckets Add By Users
       </Typography>
-      {/* The table color */}
-      <div style={{ height: 400, width: '100%', backgroundColor: "#706281" }}>
-        {/* The text color */}
-        <DataGrid rows={buckets} columns={columns} pageSize={5} style={{ color: "White"}}/>
+
+      <div style={{ height: 400, width: '100%',backgroundColor: 'rgba(245, 245, 245, 0.3)'}}>
+        <DataGrid className="round-corner-heading" rows={buckets} columns={columns} pageSize={5} style={{border: '2px solid #654321', color: "black", borderBottomRightRadius: 25 , borderBottomLeftRadius: 25}}/>
       </div>
+     
     </div>
   );
 };

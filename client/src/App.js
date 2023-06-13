@@ -29,17 +29,6 @@ const wbgColor = createTheme({
   }
 });
 
-// We don't need this code. You can change it in Header file
-// const navBarColor = createTheme({
-//   palette: {
-//     primary: {
-//       // you can change the color here
-//       //main: "#ffd740"
-//       main: "#E6E6FA"
-//     }
-//   }
-// });
-
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
   uri: '/graphql',

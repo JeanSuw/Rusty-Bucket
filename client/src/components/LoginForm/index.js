@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../../utils/mutations';
 
@@ -32,9 +32,13 @@ const Login = (props) => {
       Auth.login(data.signIn.token);
       console.log(data.signIn.token);
 
-      if (data) {
-        navigate('/profile'); // Redirect to the profile page
-      }
+       if (data) {
+        // window.location.reload(true);
+       // navigate('/'); // Redirect to the profile page
+        setTimeout(() => {
+          navigate('/profile');
+        }, 500); 
+       }
     } catch (e) {
       console.error(e);
     }
@@ -50,43 +54,38 @@ const Login = (props) => {
     <main className="flex-row justify-center mb-4">
       <div className="col-12 col-lg-10">
         {/* Changing the background color of the body under header */}
-        <div className="card" style={{backgroundColor:"#706281"}}>
+        <div className="card round-corner-form" >
           {/* Changing the background color of the Login header */}
-          <h4 className="card-header text-light p-2" style={{backgroundColor:"#382D45"}}>Login</h4>
+          <h4 className="card-header p-2 round-corner-heading" style={{ backgroundColor: "#654321" }}>Login</h4>
           <div className="card-body" >
-            {data ? (
-              <p>
-                Success! You may now head{' '}
-                <Link to="/">back to the homepage.</Link>
-              </p>
-            ) : (
-              <form onSubmit={handleFormSubmit}>
-                <input
-                  className="form-input"
-                  placeholder="Your email"
-                  name="email"
-                  type="email"
-                  value={formState.email}
-                  onChange={handleChange}
-                />
-                <input
-                  className="form-input"
-                  placeholder="******"
-                  name="password"
-                  type="password"
-                  value={formState.password}
-                  onChange={handleChange}
-                />
-                <button
-                  className="btn btn-block btn-primary"
-                  // Changing the background color of the button
-                  style={{ cursor: 'pointer',  backgroundColor:"#000053"}}
-                  type="submit"
-                >
-                  Submit
-                </button>
-              </form>
-            )}
+
+            <form onSubmit={handleFormSubmit}>
+              <input
+                className="form-input"
+                placeholder="Your email"
+                name="email"
+                type="email"
+                value={formState.email}
+                onChange={handleChange}
+              />
+              <input
+                className="form-input"
+                placeholder="******"
+                name="password"
+                type="password"
+                value={formState.password}
+                onChange={handleChange}
+              />
+              <button
+                className="custom-button"
+                // Changing the background color of the button
+                style={{ cursor: 'pointer' }}
+                type="submit"
+              >
+                Submit
+              </button>
+            </form>
+
 
             {error && (
               <div className="my-3 p-3 bg-danger text-white">

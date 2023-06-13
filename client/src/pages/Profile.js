@@ -1,11 +1,11 @@
-// export default Profile;
+
 import React from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import { DataGrid } from '@mui/x-data-grid';
 import { QUERY_CURRENTUSER } from '../utils/queries';
 import { formatDate } from '../utils/formatDate';
-import { Button, Typography } from '@mui/material';
+import { Typography, Button,LinearProgress} from '@mui/material';
 import Auth from '../utils/auth';
 
 const Profile = () => {
@@ -13,9 +13,12 @@ const Profile = () => {
   const navigate = useNavigate();
 
   if (loading) {
-    return <p>Loading...</p>;
+    return (
+      <div>
+        <LinearProgress sx={{ height: 50, backgroundColor: 'gold', '& .MuiLinearProgress-bar': { backgroundColor: '#654321' } }} /> 
+      </div>
+    );
   }
-
   if (error) {
     return <p>Error: {error.message}</p>;
   }
@@ -23,7 +26,6 @@ const Profile = () => {
   const user = data.currentUser;
 
   const columns = [
-    { field: 'id', headerName: 'ID', width: 150 },
     {
       field: 'title',
       headerName: 'Title',
@@ -60,19 +62,29 @@ const Profile = () => {
   };
 
   return (
-    <div  >
-      
-      <Typography variant="h4" align="center" color= "#654321"  fontWeight= "bold" gutterBottom>
+    <div>
+      <Typography variant="h4" align="center" gutterBottom>
         Bucket List
       </Typography>
-      {/* Change color for the button "CREATE NEW BUCKET" here in line 70 in style */}
-      <Button variant="contained" style={{backgroundColor: "#654321"}} fullWidth onClick={handleCreateBucket}>
+      <Button
+        className="custom-button"
+        variant="contained"
+        onClick={handleCreateBucket}
+        style={{ backgroundColor: '#654321', color: 'white' }}
+      >
         Create New Bucket
       </Button>
-      {/* Change color of the table*/}
-      <div style={{ height: 400, width: '100%', backgroundColor: "#87705A", color: "F9F5F1"}}>
-        {/* Change the color of the text to white */}
-        <DataGrid rows={rows} columns={columns} style={{color: "#F9F5F1"}} />
+      <div
+        style={{
+          backgroundColor: 'rgba(245, 245, 245, 0.3)',
+          height: 400,
+          width: '100%',
+          marginTop: '20px',
+          border: '2px solid #654321',
+          borderRadius: '25px',
+        }}
+      >
+        <DataGrid rows={rows} columns={columns} style={{ color: 'black' }} />
       </div>
       
     </div>

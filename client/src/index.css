@@ -1,17 +1,19 @@
 
 .bucket-form-container {
-  border: 1px solid #ccc;
+  border: 2px solid #654321;
   border-radius: 4px;
   padding: 20px;
+  border-radius: 25px;
 }
 
 .form-field {
   margin-bottom: 20px;
+  border-radius: 50px;
 }
 
 .custom-button {
   width: 100%;
-  background-color: goldenrod;
+  background-color: #654321;
   color: white;
   padding: 12px 24px;
   margin-top: 10px;
@@ -22,11 +24,31 @@
   cursor: pointer;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   transition: background-color 0.3s;
+  border-radius: 25px;
 }
 
 .custom-button:hover {
   background-color: darkgoldenrod;
 }
+
+  .grid-header {
+    background-color: #f5f5f5;
+    font-weight: bold;
+  }
+  .grid-content {
+   background-color: white;
+  }
+
+
+.round-corner-form {
+  border-radius: 25px;
+}
+
+.round-corner-heading{
+  border-radius: 25px 25px 0 0;
+}
+
+
 
 
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */

@@ -1,15 +1,13 @@
-
-// export default BucketUpdateForm;
 import React, { useState, useEffect } from 'react';
 import { useMutation, useQuery } from '@apollo/client';
 import { UPDATE_BUCKET } from '../../utils/mutations';
 import { QUERY_SINGLE_BUCKET } from '../../utils/queries';
-import { TextField, Button, Typography } from '@mui/material';
+import { TextField, Typography } from '@mui/material';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { useNavigate, useParams } from 'react-router-dom';
 import { InputLabel, FormControl, Select, MenuItem } from '@mui/material';
-import { formatDate } from '../../utils/formatDate';
+import { formatUnixTime } from '../../utils/formatUnixTime';
 
 const BucketUpdateForm = () => {
   const { id } = useParams();
@@ -18,10 +16,9 @@ const BucketUpdateForm = () => {
     title: '',
     description: '',
     status: '',
-    dueDate: new Date(),
+    dueDate: null,
     priority: '',
   });
-
   const { loading, error, data } = useQuery(QUERY_SINGLE_BUCKET, {
     variables: { bucketId: id },
   });
@@ -31,7 +28,7 @@ const BucketUpdateForm = () => {
   useEffect(() => {
     if (data) {
       const { title, description, status, dueDate, priority } = data.bucket;
-      console.log(dueDate)
+      console.log(dueDate, "dueDate on use effect")
       setBucketData({
         title,
         description,
@@ -39,6 +36,7 @@ const BucketUpdateForm = () => {
         dueDate,
         priority,
       });
+      console.log(parseInt(dueDate), "dunate converted")
     }
   }, [data]);
 
@@ -48,20 +46,20 @@ const BucketUpdateForm = () => {
   };
 
   const handleDateChange = (date) => {
-    console.log('Selected Date:', date); // Add this line to check the value
-  
-    let updatedDate;
-    if (typeof date === 'string') {
-      updatedDate = new Date(date);
-    } else if (date instanceof Date) {
-      updatedDate = date;
-    } else {
-      console.error('Invalid date');
-      return;
-    }
-  
-    updatedDate.setHours(0, 0, 0, 0);
-    setBucketData({ ...bucketData, dueDate: updatedDate });
+    console.log(date, "date pickr date");
+    // Create a new Date object with the provided date string
+    var dateObj = new Date(date);
+    // Get the Unix timestamp by dividing the milliseconds by 1000 and rounding it off
+    var unixTimestamp = Math.round(dateObj.getTime());
+    // Display the Unix timestamp
+    console.log(unixTimestamp, "unix");
+    console.log(formatUnixTime(date),"formated form date picker")
+    // Delay the execution of the last two lines of code by 1 second
+      setBucketData({ ...bucketData, dueDate:unixTimestamp});
+     console.log(parseInt(bucketData.dueDate), "on handleDate change to int")
+     console.log(bucketData.dueDate, "unix 2 after moved")
+
+
   };
 
 
@@ -79,9 +77,11 @@ const BucketUpdateForm = () => {
           updateBucketId: id,
           ...bucketData,
           priority: parseInt(bucketData.priority),
+          dueDate:bucketData.dueDate.toString(),
         },
+    
       });
-
+        console.log(bucketData.dueDate, "after submit")
       navigate(`/singleBucket/${data.updateBucket.id}`);
     } catch (err) {
       console.error(err);
@@ -95,10 +95,11 @@ const BucketUpdateForm = () => {
   if (error) {
     return <p>Error: {error.message}</p>;
   }
-
+  // console.log(bucketData)
   return (
+
     <div className="bucket-form-container">
-      <Typography variant="h4" align="center" gutterBottom>
+      <Typography className='round-corner-heading' variant="h4" align="center"  style={{backgroundColor: "#654321", color:"white"}} gutterBottom>
         Update Bucket
       </Typography>
       <form onSubmit={handleFormSubmit}>
@@ -140,9 +141,10 @@ const BucketUpdateForm = () => {
           </FormControl>
         </div>
         <div className="form-field">
-          {/* <DatePicker
-            selected={bucketData.dueDate}
-          //  onChange={handleDateChange}
+          <DatePicker
+            selected={parseInt(bucketData.dueDate)}
+           // selected={bucketData.dueDate}
+            onChange={handleDateChange}
             dateFormat="dd/MM/yyyy"
             placeholderText="Due Date"
             showYearDropdown
@@ -150,9 +152,9 @@ const BucketUpdateForm = () => {
             yearDropdownItemNumber={15}
             className="form-control"
             fullWidth
-          /> */}
+          />
         </div>
-        <div className="form-field">
+        <div className="form-field" >
           <TextField
             label="Priority"
             id="priority"
@@ -162,13 +164,13 @@ const BucketUpdateForm = () => {
             fullWidth
           />
         </div>
-        <Button type="submit" variant="contained" color="primary">
+        <button className="custom-button" style={{width: "20%"}} type="submit" variant="contained" >
           Update
-        </Button>
+        </button>
       </form>
+     
     </div>
   );
 };
 
 export default BucketUpdateForm;
-
