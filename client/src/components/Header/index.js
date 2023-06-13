@@ -1,4 +1,5 @@
 
+// export default Header;
 import React, { useState } from 'react';
 import { AppBar, Toolbar, Typography, Button, IconButton, Drawer, List, ListItem, ListItemText } from '@material-ui/core';
 import { Link, useLocation } from 'react-router-dom';
@@ -25,10 +26,24 @@ const Header = () => {
   return (
     <AppBar position="static">
       <Toolbar className={css`
-      background-color: #654321;`
-      }>
-        <Typography variant="h6" style={{ flexGrow: 1 }} color ="#F9F5F1">
-         Rusty Bucket
+        background-color: #654321;
+      `}>
+        <IconButton
+          edge="start"
+          color="inherit"
+          aria-label="menu"
+          onClick={toggleMenu}
+          className={css`
+            @media (min-width: 600px) {
+              display: none;
+            }
+          `}
+        >
+          <MenuIcon />
+        </IconButton>
+
+        <Typography variant="h6" style={{ flexGrow: 1 }}>
+          Rusty Bucket
         </Typography>
 
         <div className={css`
